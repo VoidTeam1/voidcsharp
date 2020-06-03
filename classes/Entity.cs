@@ -5,7 +5,20 @@ using System.Numerics;
 /// @CSharpLua.Ignore
 /// </summary>
 public class Entity {
+
     public int GetBoneCount() {
+        throw new NotImplementedException();
+    }
+
+    public int EntIndex() {
+        throw new NotImplementedException();
+    }
+
+    public string GetClass() {
+        throw new NotImplementedException();
+    }
+
+    public string GetModel() {
         throw new NotImplementedException();
     }
     
@@ -26,4 +39,14 @@ public static class Ents {
 	/// @CSharpLua.Template = "ents.GetAll()"
 	/// </summary>
     public extern static Entity[] GetAll(); 
+
+    /// <summary>
+	/// @CSharpLua.Template = "ents.FindByClass({0})"
+	/// </summary>
+    public extern static Entity[] FindByClass(string str);
+
+    /// <summary>
+	/// @CSharpLua.Template = "Entity({0})"
+	/// </summary>
+    public extern static Entity GetByID(int id);
 }

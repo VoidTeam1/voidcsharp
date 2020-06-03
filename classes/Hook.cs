@@ -17,7 +17,7 @@ public static class Hook {
         throw new NotImplementedException();
     }
 
-    public static void Call(string name, dynamic[] args) {
+    public static void Run(string name, dynamic[] args) {
         throw new NotImplementedException();
     }
 
