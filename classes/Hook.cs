@@ -6,6 +6,13 @@ using System.Collections;
 /// </summary>
 public static class Hook {
 
+    /// <summary>
+    /// @CSharpLua.Template = "return {0}"
+    /// </summary>
+    public static void Return(dynamic[] args) {
+        throw new NotImplementedException();
+    }
+
     public static void Add(string name, string id, Action<dynamic[]> hookCallback) {
         throw new NotImplementedException();
     }
@@ -20,7 +27,5 @@ public static class Hook {
     public static void Run(string name, dynamic[] args) {
         throw new NotImplementedException();
     }
-
-
     
 }

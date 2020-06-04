@@ -1,3 +1,5 @@
+#pragma warning disable 0626
+
 /// <summary>
 /// @CSharpLua.Ignore
 /// </summary>
@@ -11,4 +13,6 @@ public class Vector {
         y = _y;
         z = _z;
     }
+
+    public extern float Distance(Vector vec);
 }
