@@ -17,7 +17,12 @@ limitations under the License.
 return function(dir, conf)
   dir = (dir and #dir > 0) and (dir .. "/namespaces/coresystem/") or "namespaces/coresystem/"
   local include = include
-  local load = function(module) return include(dir .. module .. ".lua") end
+  local load = function(module) 
+    if (SERVER) then
+      AddCSLuaFile(dir .. module .. ".lua")
+    end
+    return include(dir .. module .. ".lua") 
+  end
     
   load("Core")(conf)
   load("Interfaces")
@@ -58,9 +63,8 @@ return function(dir, conf)
   load("Numerics/Matrix4x4")
   load("Numerics/Plane")
   load("Numerics/Quaternion")
-  load("Numerics/Vector2")
-  load("Numerics/Vector3")
-  load("Numerics/Vector4")
 
   load("Gmod/Hook")
+  load("Gmod/Entity")
+  load("Gmod/File")
 end

@@ -1,9 +1,8 @@
 local System = System
 
-print("Including hook")
 local arrObj = System.Array(System.Object)
 
-local Hook = System.define("Hook", {
+local Hook = System.define("Void.GLua.Hook", {
   Add = function (str, id, callback)
     hook.Add(str, id, function (...)
         local tbl = callback(arrObj(...))

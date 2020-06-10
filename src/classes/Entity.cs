@@ -3,60 +3,84 @@ using System.Numerics;
 
 #pragma warning disable 0626
 
-/// <summary>
-/// @CSharpLua.Ignore
-/// </summary>
-public class Entity
-{
-
-    public int GetBoneCount()
-    {
-        throw new NotImplementedException();
-    }
-
-    public int EntIndex()
-    {
-        throw new NotImplementedException();
-    }
-
-    public string GetClass()
-    {
-        throw new NotImplementedException();
-    }
-
-    public string GetModel()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Vector GetPos()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Vector SetPos(Vector pos)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-/// <summary>
-/// @CSharpLua.Ignore
-/// </summary>
-public static class Ents
-{
+namespace Void.GLua {
     /// <summary>
-    /// @CSharpLua.Template = "ents.GetAll()"
+    /// @CSharpLua.Ignore
     /// </summary>
-    public extern static Entity[] GetAll();
+    public class Entity
+    {
+
+        public int GetBoneCount()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int EntIndex()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetClass()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetModel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetColor(Color color) 
+        {
+            throw new NotImplementedException();
+        }
+
+        public Color GetColor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Vector GetPos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsOnFire()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Ignite() 
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Extinguish()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Vector SetPos(Vector pos)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     /// <summary>
-    /// @CSharpLua.Template = "ents.FindByClass({0})"
+    /// @CSharpLua.Ignore
     /// </summary>
-    public extern static Entity[] FindByClass(string str);
+    public static class Ents
+    {
+        public extern static Entity[] GetAll();
 
-    /// <summary>
-    /// @CSharpLua.Template = "Entity({0})"
-    /// </summary>
-    public extern static Entity GetByID(int id);
+        /// <summary>
+        /// @CSharpLua.Template = "ents.FindByClass({0})"
+        /// </summary>
+        public extern static Entity[] FindByClass(string str);
+
+        /// <summary>
+        /// @CSharpLua.Template = "Entity({0})"
+        /// </summary>
+        public extern static Entity GetByID(int id);
+    }
 }

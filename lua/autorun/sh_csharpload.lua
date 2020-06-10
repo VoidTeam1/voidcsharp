@@ -3,43 +3,8 @@ if (SERVER) then
 end
 
 local launcher = include("csharp/codelauncher.lua")
-launcher("csharp", "Test")--Compiled --Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
---Compiled 
+launcher("csharp", "EntityTest")
+
 --Compiled 
 --Compiled 
 --Compiled 

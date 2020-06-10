@@ -1,4 +1,5 @@
 using System;
+using Void.GLua;
 
 /// <summary>
 /// @CSharpLua.Ignore

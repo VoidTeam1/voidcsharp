@@ -1443,11 +1443,30 @@ function System.init(t)
     for k, v in pairs(files) do
       if (v == "manifest.lua") then continue end
       include(path .. v)
+      if (SERVER) then
+        AddCSLuaFile(path .. v)
+      end
     end
     for k, v in pairs(dirs) do
         local f = file.Find("csharp/compiled/" .. v .. "/*", "LUA")
         for _, p in pairs(f) do
-            include(path .. v .. "/" .. p)
+            if (v == "server" and SERVER) then
+              include(path .. v .. "/" .. p)
+            end
+            if (v == "client") then
+              if (CLIENT) then
+                include(path .. v .. "/" .. p)
+              end
+              if (SERVER) then
+                AddCSLuaFile(path .. v .. "/" .. p)
+              end
+            end
+            if (v == "shared") then
+              include(path .. v .. "/" .. p)
+              if (SERVER) then
+                AddCSLuaFile(path .. v .. "/" .. p)
+              end
+            end
         end
     end
   end
@@ -1458,6 +1477,7 @@ function System.init(t)
     local classes = {}
     for i = 1, #types do
       local name = types[i]
+      if (!modules[name]) then continue end
       local cls = assert(modules[name], name)()
       classes[i] = cls
     end
