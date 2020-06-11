@@ -58,8 +58,8 @@ end
 
 local function throw(e, lv)
   if e == nil then e = System.NullReferenceException() end
-  e:traceback(lv)
-  error(e)
+  -- e:traceback(lv)
+  error("\n" .. tostring(e))
 end
 
 local function xpcallErr(e)
