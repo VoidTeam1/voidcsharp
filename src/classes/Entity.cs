@@ -10,6 +10,16 @@ namespace Void.GLua {
     public class Entity
     {
 
+        public bool IsPlayer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Player ToPlayer()
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetBoneCount()
         {
             throw new NotImplementedException();

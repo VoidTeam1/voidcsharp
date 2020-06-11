@@ -2,6 +2,7 @@ local System = System
 
 local arrObj = System.Array(System.Object)
 
+
 local Hook = System.define("Void.GLua.Hook", {
   Add = function (str, id, callback)
     hook.Add(str, id, function (...)

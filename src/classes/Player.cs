@@ -1,23 +1,21 @@
 using System;
-using Void.GLua;
 
-/// <summary>
-/// @CSharpLua.Ignore
-/// </summary>
-public class Player : Entity {
-    public Vector Nick() {
-        throw new NotImplementedException();
-    }
-}
-
-/// <summary>
-/// @CSharpLua.Ignore
-/// </summary>
-public static class PlayerManager {
+namespace Void.GLua {
     /// <summary>
-    /// @CSharpLua.Template = "player.GetAll()"
+    /// @CSharpLua.Ignore
     /// </summary>
-    public static Player[] GetAll() {
-        throw new NotImplementedException();
+    public class Player : Entity {
+        public string Nick() {
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    /// @CSharpLua.Ignore
+    /// </summary>
+    public static class Players {
+        public static Player[] GetAll() {
+            throw new NotImplementedException();
+        }
     }
 }

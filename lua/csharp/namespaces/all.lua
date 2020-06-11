@@ -67,4 +67,5 @@ return function(dir, conf)
   load("Gmod/Hook")
   load("Gmod/Entity")
   load("Gmod/File")
+  load("Gmod/Drawing")
 end
