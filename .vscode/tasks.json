@@ -5,7 +5,7 @@
     "tasks": [
         {
             "label": "build",
-            "command": "dotnet devenv/CSharp.lua.Launcher.dll -s ../csharp/src -d ../csharp/lua/csharp/compiled",
+            "command": "dotnet devenv/CSharp.lua.Launcher.dll -c -s ../voidcsharp/src -d ../voidcsharp/lua/csharp/compiled",
             "type": "shell",
             "group": "build",
             "presentation": {
@@ -16,7 +16,7 @@
         {
             "label": "refresh",
             "type": "shell",
-            "command": "echo --Compiled >> ../csharp/lua/autorun/sh_csharpload.lua",
+            "command": "echo --Compiled >> ../voidcsharp/lua/autorun/sh_csharpload.lua",
             "group": "build",
             "dependsOn": [
                 "build"

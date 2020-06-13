@@ -4,7 +4,7 @@ using Void.GLua;
 
 namespace EntityTest.Client
 {
-    class Program {
+    class Loader {
         public static void Initialize() {
             Console.WriteLine("Client loaded! HELLO THERE!");
         }

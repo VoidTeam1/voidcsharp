@@ -12,11 +12,11 @@ namespace EntityTest
             Console.WriteLine("EntityTest loader loaded!");
 
             if (isServer) {
-                EntityTest.Server.Program.Initialize();
+                EntityTest.Server.Loader.Initialize();
             }
 
             if (isClient) {
-                EntityTest.Client.Program.Initialize();
+                EntityTest.Client.Loader.Initialize();
             }
         }
 

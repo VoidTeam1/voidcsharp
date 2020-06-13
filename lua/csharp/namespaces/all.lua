@@ -68,4 +68,5 @@ return function(dir, conf)
   load("Gmod/Entity")
   load("Gmod/File")
   load("Gmod/Drawing")
+  load("Gmod/SQL")
 end

@@ -7,7 +7,7 @@ namespace Void.GLua {
     /// <summary>
     /// @CSharpLua.Ignore
     /// </summary>
-    public class Entity
+    public abstract class Entity
     {
 
         public bool IsPlayer()

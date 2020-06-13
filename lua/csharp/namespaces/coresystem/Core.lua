@@ -1435,6 +1435,30 @@ function System.namespace(name, f)
   namespace[1], namespace[2] = "", false
 end
 
+local function includeDir(path, dir, isClient, isShared)
+	local f, dirs = file.Find("csharp/compiled/" .. dir .. "/*", "LUA")
+	for _, p in pairs(f) do
+
+		if (isShared) then
+			include(path .. dir .. "/" .. p)
+		else
+			if (isClient and CLIENT) then
+				include(path .. dir .. "/" .. p)
+			end
+
+			if (!isClient and SERVER) then
+				include(path .. dir .. "/" .. p)
+			end
+		end
+		if ( (isClient or isShared) and SERVER ) then
+			AddCSLuaFile(path .. dir .. "/" .. p)
+		end
+	end
+	for _, d in pairs(dirs) do
+		includeDir(path, dir .. "/" .. d, isClient, isShared)
+	end
+end
+
 function System.init(t)
   local path = t.path
   local files, dirs = file.Find("csharp/compiled/*", "LUA" )
@@ -1450,22 +1474,14 @@ function System.init(t)
     for k, v in pairs(dirs) do
         local f = file.Find("csharp/compiled/" .. v .. "/*", "LUA")
         for _, p in pairs(f) do
-            if (v == "server" and SERVER) then
-              include(path .. v .. "/" .. p)
+            if (v == "server") then
+				includeDir(path, v)
             end
             if (v == "client") then
-              if (CLIENT) then
-                include(path .. v .. "/" .. p)
-              end
-              if (SERVER) then
-                AddCSLuaFile(path .. v .. "/" .. p)
-              end
+              	includeDir(path, v, true)
             end
             if (v == "shared") then
-              include(path .. v .. "/" .. p)
-              if (SERVER) then
-                AddCSLuaFile(path .. v .. "/" .. p)
-              end
+              	includeDir(path, v, false, true)
             end
         end
     end
