@@ -43,15 +43,16 @@ namespace Void.ORM
 
 
         // SQLite is not async, so we can return dynamic
-        public static Dictionary<string, object>[] RawQuery(string query)
+        public static object RawQuery(string query)
         {
             // This only works for SQLite, MySQL needs to use PreparedQueries
             if (SQLConfig.usingMySQL) {
                 throw new NotSupportedException("RawQuery is only for SQLite. Use Prepare for MySQL.");
             }
 
+
             string escapedQuery = DatabaseDriver.Escape(query, true);
-            Dictionary<string, object>[] result = DatabaseDriver.Query(escapedQuery);
+            object result = DatabaseDriver.Query(escapedQuery);
 
             return result;
         }

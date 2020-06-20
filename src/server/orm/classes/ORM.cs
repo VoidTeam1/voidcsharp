@@ -24,7 +24,6 @@ namespace Void.ORM
     public class QueryBuilder
     {
 
-        public QueryType QueryType;
 
         public String TableName;
 
@@ -32,12 +31,12 @@ namespace Void.ORM
         private List<string> selectList = new List<string>();
         private List<Tuple<string, object>> updateList = new List<Tuple<string, object>>();
         private List<Tuple<string, object>> insertList = new List<Tuple<string, object>>();
-        private List<Tuple<string, object>> createList = new List<Tuple<string, object>>();
+        private List<Tuple<string, string>> createList = new List<Tuple<string, string>>();
         private string primaryKeys;
 
         private List<object> preparedVars = new List<object>();
 
-        public QueryBuilder(string tableName, QueryType queryType)
+        public QueryBuilder(string tableName)
         {
             if (!Database.IsConnected)
             {
@@ -45,12 +44,11 @@ namespace Void.ORM
             }
 
             TableName = tableName;
-            QueryType = queryType;
         }
 
         #region Select Region
 
-        public void Select(string val)
+        public void SelectColumn(string val)
         {
             selectList.Add(val);
         }
@@ -85,7 +83,7 @@ namespace Void.ORM
 
         #region Insert Region
 
-        public void Insert(string key, object value)
+        public void InsertColumn(string key, object value)
         {
             Tuple<string, object> tuple = new Tuple<string, object>(key, value);
             insertList.Add(tuple);
@@ -95,7 +93,7 @@ namespace Void.ORM
 
         #region Update Region
 
-        public void Update(string key, string value)
+        public void UpdateColumn(string key, string value)
         {
             Tuple<string, object> tuple = new Tuple<string, object>(key, value);
             updateList.Add(tuple);
@@ -105,9 +103,9 @@ namespace Void.ORM
 
         #region Create region
 
-        public void Create(string key, object value)
+        public void CreateColumn(string key, string value)
         {
-            Tuple<string, object> tuple = new Tuple<string, object>(key, value);
+            Tuple<string, string> tuple = new Tuple<string, string>(key, value);
             createList.Add(tuple);
         }
 
@@ -115,10 +113,22 @@ namespace Void.ORM
 
         #region Execution
 
-        public Task<Dictionary<string, object>[]> Execute()
+        public async Task<Dictionary<string, object>[]> Select()
         {
-            string query = CreateQuery();
-            return ExecuteQuery(query);
+            string query = CreateQuery(QueryType.Select);
+            return await ExecuteQuery(query, QueryType.Select);
+        }
+
+        public Task Create()
+        {
+            string query = CreateQuery(QueryType.Create);
+            return ExecuteQuery(query, QueryType.Create);
+        }
+
+        public Task Insert()
+        {
+            string query = CreateQuery(QueryType.Insert);
+            return ExecuteQuery(query, QueryType.Insert);
         }
 
 
@@ -136,7 +146,7 @@ namespace Void.ORM
             return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
 
-        private async Task<Dictionary<string, object>[]> ExecuteQuery(string query)
+        private async Task<dynamic> ExecuteQuery(string query, QueryType queryType)
         {
             if (SQLConfig.usingMySQL)
             {
@@ -152,16 +162,26 @@ namespace Void.ORM
                 }
                 
                 Console.WriteLine(query);
-                Dictionary<string, object>[] dict = Database.RawQuery(query);
-                var task = await Task.FromResult<Dictionary<string, object>[]>(dict);
-                return task;
+                if (queryType == QueryType.Select)
+                {
+                    Dictionary<string, object>[] obj = (Dictionary<string, object>[]) Database.RawQuery(query);
+                    var task = await Task.FromResult<Dictionary<string, object>[]>(obj);
+                    return task;
+                }
+                else
+                {
+                    string res = (string) Database.RawQuery(query);
+                    var task = await Task.FromResult<string>(res);
+                    return task;
+                }
+                
             }
         }
 
-        private string CreateQuery()
+        private string CreateQuery(QueryType queryType)
         {
             string returnVal = null;
-            switch (QueryType)
+            switch (queryType)
             {
                 case QueryType.Select:
                     returnVal = BuildSelectQuery();
@@ -171,12 +191,80 @@ namespace Void.ORM
                     returnVal = BuildUpdateQuery();
                     break;
 
+                case QueryType.Create:
+                    returnVal = BuildCreateQuery();
+                    break;
+
+                case QueryType.Insert:
+                    returnVal = BuildInsertQuery();
+                    break;
+
                 default:
                     throw new NotImplementedException("Unknown query type");
             }
 
             return returnVal;
 
+        }
+
+        private string BuildInsertQuery()
+        {
+            List<string> query = new List<string>();
+            query.Add("INSERT INTO");
+            query.Add(TableName);
+            query.Add("(");
+            int i = 0;
+            foreach (Tuple<string, object> insertClause in insertList)
+            {
+                bool isLast = insertList.Count == i+1;
+                if (isLast)
+                    query.Add(insertClause.Item1);
+                else
+                    query.Add(insertClause.Item1 + ",");
+                i++;
+            }
+            query.Add(")");
+
+            query.Add("VALUES");
+            query.Add("(");
+            int j = 0;
+            foreach (Tuple<string, object> insertClause in insertList)
+            {
+                preparedVars.Add(insertClause.Item2);
+                bool isLast = insertList.Count == j+1;
+                if (isLast)
+                    query.Add("?");
+                else
+                    query.Add("?,");
+                j++;
+            }
+            query.Add(")");
+
+            return String.Join(" ", query.ToArray());
+        }
+
+        private string BuildCreateQuery()
+        {
+            List<string> query = new List<string>();
+            query.Add("CREATE TABLE IF NOT EXISTS");
+            query.Add(TableName);
+            query.Add("(");
+            
+            int i = 0;
+            foreach (Tuple<string, string> createClause in createList)
+            {
+                bool isLast = createList.Count == i+1;
+                if (isLast)
+                    query.Add(String.Format("{0} {1}", createClause.Item1, createClause.Item2));
+                else
+                    query.Add(String.Format("{0} {1},", createClause.Item1, createClause.Item2));
+                
+                i++;
+            }
+
+            query.Add(")");
+
+            return String.Join(" ", query.ToArray());
         }
 
         private string BuildSelectQuery()
@@ -209,6 +297,7 @@ namespace Void.ORM
 
         private void AddWhereClause(List<string> list)
         {
+            if (whereList.Count < 1) return;
             list.Add("WHERE");
             bool isFirst = true;
             foreach (Tuple<string, string, object> whereClause in whereList)

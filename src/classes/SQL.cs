@@ -9,7 +9,7 @@ namespace Void.GLua
     /// </summary>
     public abstract class DatabaseDriver
     {
-        public abstract Dictionary<string, object>[] Query(string query);
+        public abstract object Query(string query);
         public abstract string Escape(string str, bool noQuotes = false);
     }
 
@@ -19,7 +19,7 @@ namespace Void.GLua
     /// </summary>
     public class MySQLoo : DatabaseDriver
     {
-        public override Dictionary<string, object>[] Query(string query)
+        public override object Query(string query)
         {
             throw new NotImplementedException();
         }
@@ -34,14 +34,11 @@ namespace Void.GLua
     /// </summary>
     public class SQLite : DatabaseDriver
     {
-        public override Dictionary<string, object>[] Query(string query)
+        public override object Query(string query)
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// @CSharpLua.Template = "sql.SQLStr({0}, {1})"
-        /// </summary>
         public override string Escape(string str, bool noQuotes = false)
         {
             throw new NotImplementedException();

@@ -24,10 +24,14 @@ namespace EntityTest.Server
         {
             await Database.Connect();
             
-            QueryBuilder query = new QueryBuilder("voidcases_inventory", QueryType.Select);
-            query.Where("item", 3);
-            Dictionary<string, object>[] q = await query.Execute();
-            Console.WriteLine(q);
+            QueryBuilder query = new QueryBuilder("orm_testquery");
+            query.InsertColumn("price", 2400);
+            query.InsertColumn("sid", "76258456");
+            await query.Insert();
+
+            QueryBuilder q = new QueryBuilder("orm_testquery");
+            var r = await q.Select();
+            Console.WriteLine(r);
 
         }
     }
