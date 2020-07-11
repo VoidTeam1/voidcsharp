@@ -11,6 +11,7 @@ using Void.ORM;
 
 namespace EntityTest.Server
 {
+
     static class Loader
     {
         public static void Initialize()
@@ -24,14 +25,7 @@ namespace EntityTest.Server
         {
             await Database.Connect();
             
-            QueryBuilder query = new QueryBuilder("orm_testquery");
-            query.InsertColumn("price", 2400);
-            query.InsertColumn("sid", "76258456");
-            await query.Insert();
-
-            QueryBuilder q = new QueryBuilder("orm_testquery");
-            var r = await q.Select();
-            Console.WriteLine(r);
+            
 
         }
     }

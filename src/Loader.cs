@@ -4,7 +4,7 @@ namespace EntityTest
 {
     class Program {
 
-        static void Main(string[] args)
+        static void Main()
         {
             bool isClient = Globals.IsClient();
             bool isServer = Globals.IsServer();
