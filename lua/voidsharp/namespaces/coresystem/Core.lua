@@ -1436,7 +1436,7 @@ function System.namespace(name, f)
 end
 
 local function includeDir(path, dir, isClient, isShared)
-	local f, dirs = file.Find("csharp/compiled/" .. dir .. "/*", "LUA")
+	local f, dirs = file.Find(path .. "/" .. dir .. "/*", "LUA")
 	for _, p in pairs(f) do
 
 		if (isShared) then
@@ -1461,7 +1461,7 @@ end
 
 function System.init(t)
   local path = t.path
-  local files, dirs = file.Find("csharp/compiled/*", "LUA" )
+  local files, dirs = file.Find(path .. "/*", "LUA" )
   if files then
     path = (path and #path > 0) and (path .. '/') or ""
     for k, v in pairs(files) do
@@ -1472,15 +1472,14 @@ function System.init(t)
       end
     end
     for k, v in pairs(dirs) do
-        local f = file.Find("csharp/compiled/" .. v .. "/*", "LUA")
+        local f = file.Find(path .. "/" .. v .. "/*", "LUA")
         for _, p in pairs(f) do
+            if (v == "namespaces") then continue end
             if (v == "server") then
-				includeDir(path, v)
-            end
-            if (v == "client") then
+				      includeDir(path, v)
+            elseif (v == "client") then
               	includeDir(path, v, true)
-            end
-            if (v == "shared") then
+            else
               	includeDir(path, v, false, true)
             end
         end

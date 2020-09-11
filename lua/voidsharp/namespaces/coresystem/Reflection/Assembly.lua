@@ -801,6 +801,10 @@ local function getAssemblyName(this)
   return name .. ", Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
 end
 
+local SerializableAttribute = define("System.SerializableAttribute", {
+  
+})
+
 Assembly = define("System.Reflection.Assembly", {
   GetName = getAssemblyName,
   getFullName = getAssemblyName,

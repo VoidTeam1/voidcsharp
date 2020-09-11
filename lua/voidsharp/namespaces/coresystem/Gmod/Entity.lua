@@ -15,7 +15,7 @@ end
 
 local entity = table.Copy(meta)
 
-local ent = System.define("Void.GLua.Entity", entity)
+local ent = System.define("VoidSharp.Entity", entity)
 
 local ArrayEntity = System.Array(ent)
 
@@ -24,7 +24,7 @@ local plyMeta = FindMetaTable("Player")
 local ply = table.Copy(plyMeta)
 
 
-local playerD = System.define("Void.GLua.Player", ply)
+local playerD = System.define("VoidSharp.Player", ply)
 
 local ArrayPlayer = System.Array(playerD)
 
@@ -38,17 +38,25 @@ plyTbl.GetAll = function ()
     return arr
 end
 
-local Player_ = System.define("Void.GLua.Players", plyTbl)
+local Player_ = System.define("VoidSharp.Players", plyTbl)
 
 -- Ents
 local funcTbl = table.Copy(ents)
 
 local entsGetAll = ents.GetAll
 funcTbl.GetAll = function ()
-    local arr = ArrayEntity(unpack(entsGetAll()))
-    return arr
+    return System.arrayFromTable(entsGetAll(), ent)
 end
 
+local entsByClass = ents.FindByClass
+funcTbl.FindByClass = function (str)
+    return System.arrayFromTable(entsByClass(str), ent)
+end
 
-local Ents = System.define("Void.GLua.Ents", funcTbl)
+local entsGetById = ents.GetByIndex
+funcTbl.GetById = function (id)
+    return Entity(id)
+end
+
+local Ents = System.define("VoidSharp.Ents", funcTbl)
 

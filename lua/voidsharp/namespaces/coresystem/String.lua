@@ -37,6 +37,8 @@ local sub = string.sub
 local find = string.find
 local gsub = string.gsub
 
+local origSplit = string.Split
+
 local table = table
 local tconcat = table.concat
 local unpack = table.unpack
@@ -368,10 +370,6 @@ local function copyTo(this, sourceIndex, destination, destinationIndex, count)
   end
 end
 
-local function endsWith(this, suffix)
-  return suffix == "" or sub(this, -#suffix) == suffix
-end
-
 local function equalsObj(this, v)
   if type(v) == "string" then
     return this == v
@@ -555,6 +553,9 @@ local function findAny(s, strings, startIndex)
 end
 
 local function split(this, strings, count, options) 
+  if (isstring(this)) then
+    return origSplit(this, strings)
+  end
   local t = {}
   local find = find
   if type(strings) == "table" then
@@ -691,7 +692,6 @@ string.CompareTo = compare
 string.CompareToObj = compareToObj
 string.Contains = contains
 string.CopyTo = copyTo
-string.EndsWith = endsWith
 string.EqualsObj = equalsObj
 string.GetEnumerator = getEnumerator
 string.GetTypeCode = getTypeCode
@@ -712,7 +712,6 @@ string.ToLowerInvariant = lower
 string.ToString = System.identityFn
 string.ToUpper = upper
 string.ToUpperInvariant = upper
-string.Trim = trim
 string.TrimEnd = trimEnd
 string.TrimStart = trimStart
 
@@ -722,7 +721,7 @@ if debugsetmetatable then
   String.base = inherits
   System.define("System.String", String)
 
-  debugsetmetatable("", String)
+  -- debugsetmetatable("", String)
   local Object = System.Object
   local StringMetaTable = setmetatable({ __index = Object, __call = ctor }, Object)
   setmetatable(String, StringMetaTable)

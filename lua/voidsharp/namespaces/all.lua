@@ -29,7 +29,7 @@ return function(dir, conf)
   load("Exception")
   load("Number")
   load("Char")
-  load("String")
+  load("String") -- problem here
   load("Boolean")
   load("Delegate")
   load("Enum")

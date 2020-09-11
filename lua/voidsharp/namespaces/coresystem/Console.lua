@@ -33,11 +33,7 @@ end
 
 local Console = System.define("System.Console", {
   WriteLine = function (v, ...)
-    if (istable(v)) then
-      PrintTable(v)
-    else
-      print(getWriteValue(v, ...))    
-    end 
+    print(getWriteValue(v, ...))
   end,
   WriteLineChar = function (v)
     print(char(v))     

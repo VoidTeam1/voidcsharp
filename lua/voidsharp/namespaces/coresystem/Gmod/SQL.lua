@@ -2,10 +2,9 @@ local sql = sql
 local sqlEscape = sql.SQLStr
 local System = System
 local DictStringObject = System.Dictionary(System.String, System.Object)
-local ArrayDictStringObject = System.Array(DictStringObject)
+local ListDictStringObject = System.List(DictStringObject)
 
-
-local Hook = System.define("Void.GLua.SQLite", {
+local Hook = System.define("VoidSharp.SQLite", {
   Query = function (s, str)
     local q = sql.Query(str)
     if (q == false) then
@@ -15,13 +14,13 @@ local Hook = System.define("Void.GLua.SQLite", {
       if (!q) then
         return {}
       end
-      local arr = ArrayDictStringObject()
+      local arr = ListDictStringObject()
       for _, tbl in ipairs(q) do
           local dict = DictStringObject()
           for key, val in pairs(tbl) do
               dict:AddKeyValue(key, val)
           end
-          arr[_] = dict
+          arr:Add(dict)
       end
 
       return arr
