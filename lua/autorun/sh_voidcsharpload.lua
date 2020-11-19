@@ -1,6 +1,19 @@
 ﻿VoidSharp = VoidSharp or {}
 VoidSharp.Loader = {}
 
+VoidSharp.TimerLastId = 0
+
+VoidSharp.Config = {
+    setTimeout = function (f, ms)
+        local timerId = "VoidSharp." .. VoidSharp.TimerLastId + 1
+        timer.Create(timerId, ms/1000, 1, f)
+        return timerId
+    end,
+    clearTimeout = function (id)
+        timer.Remove(id)
+    end
+}
+
 if (SERVER) then
     AddCSLuaFile("voidsharp/codelauncher.lua")
 end
@@ -12,7 +25,7 @@ if (SERVER) then
     AddCSLuaFile("voidsharp/namespaces/all.lua")
 end
     
-include("voidsharp/namespaces/all.lua")("voidsharp")
+include("voidsharp/namespaces/all.lua")("voidsharp", VoidSharp.Config)
 
 VoidSharp.Loader.Loaded = true
 

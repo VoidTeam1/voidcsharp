@@ -45,7 +45,6 @@ local tmove = table.move
 local tsort = table.sort
 local pack = table.pack
 local unpack = table.unpack
-local error = error
 local coroutine = coroutine
 local ccreate = coroutine.create
 local cresume = coroutine.resume

@@ -49,7 +49,6 @@ local setmetatable = setmetatable
 local tremove = table.remove
 local pack = table.pack
 local unpack = table.unpack
-local error = error
 
 local TaskCanceledException = define("System.Threading.Tasks.TaskCanceledException", {
   __tostring = Exception.ToString,

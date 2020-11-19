@@ -448,30 +448,39 @@ local MethodInfo = define("System.Reflection.MethodInfo", {
       if checkTarget(cls, obj, metadata) then
         isStatic = true
       end
-      local t
+      local t = {}
       local parameterCount = band(metadata[2], 0x300)
+      parameterCount = math.Round(metadata[2] / 256) -- holy shit
       if parameterCount == 0 then
         if parameters ~= nil and #parameters > 0 then
           throw(TargetParameterCountException())
         end
       else
-        if parameters == nil and #parameters ~= parameterCount then
+        -- parameterCount = parameterCount / 256
+        if parameters == nil or #parameters ~= parameterCount then
           throw(TargetParameterCountException())
         end
         for i = 4, 3 + parameterCount do
           local j = #t
-          t[j + 1] = checkValue(parameters:get(j), metadata[i])
+          
+          System.try(function ()
+            t[j + 1] = checkValue(parameters:get(j), metadata[i])
+          end, function ()
+            if (!parameters:get(j).__name__ and metadata[i].__name__:find(type(parameters:get(j)))) then
+              t[j + 1] = parameters:get(j)
+            end
+          end)
         end
       end
       local f = metadata[3]
       if isStatic then
-        if t then
+        if #t > 0 then
           return f(unpack(t, 1, parameterCount))
         else
           return f()
         end
       else
-        if t then
+        if #t > 0 then
           return f(obj, unpack(t, 1, parameterCount))
         else
           return f(obj)
@@ -835,7 +844,10 @@ Assembly = define("System.Reflection.Assembly", {
     local classes = this.classes
     if classes then
       for i = 1, #classes do
-        t[i] = typeof(classes[i])
+        local class = classes[i]
+        if (class) then
+          t[#t + 1] = typeof(class)
+        end
       end
     end
     local array = arrayFromTable(t, Type, true)

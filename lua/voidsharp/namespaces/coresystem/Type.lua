@@ -407,6 +407,7 @@ local is, getName
 
 if System.debugsetmetatable then
   is = function (obj, T)
+    if (type(obj) == "string" and T.__name__ == "System.String") then return true end
     return checks[getmetatable(obj)](obj, T)
   end
 
@@ -459,6 +460,9 @@ end
 
 local function cast(cls, obj, nullable)
   if obj ~= nil then
+    if (getName(obj) == cls.__name__) then
+      return obj
+    end
     if is(obj, cls) then
       return obj
     end

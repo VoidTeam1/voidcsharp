@@ -327,6 +327,7 @@ local function changeType(value, conversionType)
     end
     return nil
   end
+
   local ic = as(value, IConvertible)
   if ic == nil then
     if value:GetType() == conversionType then

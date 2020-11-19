@@ -26,7 +26,7 @@ local function getMessage(this)
   return this.message or ("Exception of type '%s' was thrown."):format(this.__name__)
 end
 
-local traceback = (debug and debug.traceback) or System.config.traceback or function () return "" end
+local traceback = debug.traceback or System.config.traceback
 System.traceback = traceback
 
 local function toString(this)
@@ -50,6 +50,8 @@ end
 local function ctorOfException(this, message, innerException)
   this.message = message
   this.innerException = innerException
+
+  this:traceback()
 end
 
 local Exception = define("System.Exception", {

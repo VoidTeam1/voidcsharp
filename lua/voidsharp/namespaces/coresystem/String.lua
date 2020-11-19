@@ -552,8 +552,9 @@ local function findAny(s, strings, startIndex)
   return findBegin, findEnd
 end
 
+-- sorry for overriding :/
 local function split(this, strings, count, options) 
-  if (isstring(this)) then
+  if (!debug.getinfo(split).source:find("voidsharp")) then
     return origSplit(this, strings)
   end
   local t = {}

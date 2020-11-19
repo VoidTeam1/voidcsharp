@@ -69,4 +69,6 @@ return function(dir, conf)
   load("Gmod/File")
   load("Gmod/Drawing")
   load("Gmod/SQL")
+  load("Gmod/VoidLib")
+  load("Gmod/Panel")
 end

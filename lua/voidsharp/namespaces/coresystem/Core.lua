@@ -24,7 +24,6 @@ local tremove = table.remove
 local tconcat = table.concat
 local floor = math.floor
 local ceil = math.ceil
-local error = error
 local select = select
 local xpcall = xpcall
 local rawget = rawget
@@ -59,7 +58,7 @@ end
 local function throw(e, lv)
   if e == nil then e = System.NullReferenceException() end
   -- e:traceback(lv)
-  error("\n" .. tostring(e))
+  error(e:ToString())
 end
 
 local function xpcallErr(e)
@@ -1390,6 +1389,7 @@ function System.stackalloc(t)
   return newPointer(t, 1)
 end
 
+local lastT = nil
 local modules, imports = {}, {}
 function System.import(f)
   imports[#imports + 1] = f
@@ -1401,12 +1401,28 @@ local function defIn(kind, name, f)
   if #namespaceName > 0 then
     name = namespaceName .. (isClass and "+" or ".") .. name
   end
-  -- assert(modules[name] == nil, name)
+  -- assert(modules[name] == nil, name) -- disabled due to AutoRefresh, need to get this fixed!
+
+  local doesOldExist = modules[isClass and name:gsub("+", ".") or name]
+
   namespace[1], namespace[2] = name, kind == "C" or kind == "S"
   local t = f(assembly)
   namespace[1], namespace[2] = namespaceName, isClass
+  
   modules[isClass and name:gsub("+", ".") or name] = function()
     return def(name, kind, t)
+  end
+
+  if (doesOldExist) then
+    def(name, kind, t)
+    
+    for i = 1, #imports do
+      imports[i](global)
+    end
+
+    for i = 1, #metadatas do
+      metadatas[i](global)
+    end
   end
 end
 
@@ -1435,19 +1451,18 @@ function System.namespace(name, f)
   namespace[1], namespace[2] = "", false
 end
 
-local function includeDir(path, dir, isClient, isShared)
+local function includeDir(includeF, path, dir, isClient, isShared)
 	local f, dirs = file.Find(path .. "/" .. dir .. "/*", "LUA")
 	for _, p in pairs(f) do
-
 		if (isShared) then
-			include(path .. dir .. "/" .. p)
+			includeF(path .. dir .. "/" .. p)
 		else
 			if (isClient and CLIENT) then
-				include(path .. dir .. "/" .. p)
+				includeF(path .. dir .. "/" .. p)
 			end
 
 			if (!isClient and SERVER) then
-				include(path .. dir .. "/" .. p)
+				includeF(path .. dir .. "/" .. p)
 			end
 		end
 		if ( (isClient or isShared) and SERVER ) then
@@ -1455,9 +1470,10 @@ local function includeDir(path, dir, isClient, isShared)
 		end
 	end
 	for _, d in pairs(dirs) do
-		includeDir(path, dir .. "/" .. d, isClient, isShared)
+		includeDir(includeF, path, dir .. "/" .. d, isClient, isShared)
 	end
 end
+
 
 function System.init(t)
   local path = t.path
@@ -1465,24 +1481,29 @@ function System.init(t)
   if files then
     path = (path and #path > 0) and (path .. '/') or ""
     for k, v in pairs(files) do
+      v = v:lower()
       if (v == "manifest.lua") then continue end
-      include(path .. v)
+      if (v == "program.lua") then continue end -- load program as the last file
+      t.loaderF(path .. v)
       if (SERVER) then
         AddCSLuaFile(path .. v)
       end
     end
     for k, v in pairs(dirs) do
-        local f = file.Find(path .. "/" .. v .. "/*", "LUA")
-        for _, p in pairs(f) do
-            if (v == "namespaces") then continue end
-            if (v == "server") then
-				      includeDir(path, v)
-            elseif (v == "client") then
-              	includeDir(path, v, true)
-            else
-              	includeDir(path, v, false, true)
-            end
+        v = v:lower()
+        if (v == "namespaces") then continue end
+        if (v == "server") then
+          includeDir(t.loaderF, path, v)
+        elseif (v == "client") then
+            includeDir(t.loaderF, path, v, true)
+        else
+            includeDir(t.loaderF, path, v, false, true)
         end
+    end
+
+    t.loaderF(path .. "program.lua")
+    if (SERVER) then
+      AddCSLuaFile(path .. "program.lua")
     end
   end
 
@@ -1524,7 +1545,8 @@ function System.init(t)
   end
 
   local current = assembly
-  modules, imports, assembly, metadatas = {}, {}, nil, nil
+  -- modules, imports, assembly, metadatas = {}, {}, nil, nil
+  lastT = t
   return current
 end
 
