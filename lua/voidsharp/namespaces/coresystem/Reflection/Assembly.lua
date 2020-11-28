@@ -422,6 +422,18 @@ local function getMethodAttributesIndex(metadata)
   return index
 end
 
+local ParameterInfo = define("System.Reflection.ParameterInfo", {
+  __ctor__ = function (this, type)
+    this.paramType = typeof(type)
+  end,
+  getName = function (this)
+
+  end,
+  getParameterType = function (this)
+    return this.paramType
+  end,
+})
+
 local MethodInfo = define("System.Reflection.MethodInfo", {
   __eq = eq,
   base = { MemberInfo },
@@ -440,6 +452,23 @@ local MethodInfo = define("System.Reflection.MethodInfo", {
     end
     local parameterCount = band(flags, 0x300)
     return typeof(metadata[4 + parameterCount])
+  end,
+  GetParameters = function (this)
+    local cls, metadata = this.c, this.metadata
+    local parameterCount = band(metadata[2], 0x300)
+    parameterCount = math.Round(metadata[2] / 256) -- holy shit
+
+    local paramStartIndex = 4
+    local paramEndIndex = paramStartIndex + parameterCount - 1
+
+    local paramInfos = {}
+    local j = 1
+    for i = paramStartIndex, paramEndIndex do
+      paramInfos[j] = ParameterInfo(metadata[i])
+      j = j + 1
+    end
+
+    return arrayFromTable(paramInfos, ParameterInfo)
   end,
   Invoke = function (this, obj, parameters)
     local cls, metadata = this.c, this.metadata
