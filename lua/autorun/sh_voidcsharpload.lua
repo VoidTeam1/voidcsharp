@@ -14,6 +14,10 @@ VoidSharp.Config = {
     end
 }
 
+local function includeFile(str)
+    include(str)
+end
+
 if (SERVER) then
     AddCSLuaFile("voidsharp/codelauncher.lua")
 end
@@ -26,6 +30,7 @@ if (SERVER) then
 end
     
 include("voidsharp/namespaces/all.lua")("voidsharp", VoidSharp.Config)
+launcher("voidsharp/lib", "VoidSharp", includeFile)
 
 VoidSharp.Loader.Loaded = true
 

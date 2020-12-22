@@ -12,5 +12,7 @@ return function (path, funcName, includeF)
     end
     include(path .. "/manifest.lua")(path, includeF)
 
-    _G[funcName].Program.Main()
+    if (_G[funcName].Program) then
+        _G[funcName].Program.Main()
+    end
 end

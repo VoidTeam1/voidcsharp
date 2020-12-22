@@ -64,11 +64,9 @@ return function(dir, conf)
   load("Numerics/Plane")
   load("Numerics/Quaternion")
 
-  load("Gmod/Hook")
   load("Gmod/Entity")
   load("Gmod/File")
   load("Gmod/Drawing")
   load("Gmod/SQL")
-  load("Gmod/VoidLib")
   load("Gmod/Panel")
 end

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_CSharp.lua.310337905.00" t="ExcludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
+    <e p="F:\gmod\garrysmod\addons\voidchar2\devenv\src" t="IncludeFlat">
+      <e p="CSharp.lua" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Compiler.cs" t="Include" />
+        <e p="CoreSystem.Lua" t="Include">
+          <e p="All.lua" t="Include" />
+          <e p="CoreSystem" t="Include">
+            <e p="Array.lua" t="Include" />
+            <e p="Boolean.lua" t="Include" />
+            <e p="Char.lua" t="Include" />
+            <e p="Collections" t="Include">
+              <e p="Dictionary.lua" t="Include" />
+              <e p="EqualityComparer.lua" t="Include" />
+              <e p="HashSet.lua" t="Include" />
+              <e p="LinkedList.lua" t="Include" />
+              <e p="Linq.lua" t="Include" />
+              <e p="List.lua" t="Include" />
+              <e p="Queue.lua" t="Include" />
+              <e p="SortedSet.lua" t="Include" />
+              <e p="Stack.lua" t="Include" />
+            </e>
+            <e p="Console.lua" t="Include" />
+            <e p="Convert.lua" t="Include" />
+            <e p="Core.lua" t="Include" />
+            <e p="DateTime.lua" t="Include" />
+            <e p="Delegate.lua" t="Include" />
+            <e p="Enum.lua" t="Include" />
+            <e p="Exception.lua" t="Include" />
+            <e p="Globalization" t="Include">
+              <e p="Globalization.lua" t="Include" />
+            </e>
+            <e p="Interfaces.lua" t="Include" />
+            <e p="IO" t="Include">
+              <e p="File.lua" t="Include" />
+            </e>
+            <e p="Math.lua" t="Include" />
+            <e p="Number.lua" t="Include" />
+            <e p="Numerics" t="Include">
+              <e p="Complex.lua" t="Include" />
+              <e p="HashCodeHelper.lua" t="Include" />
+              <e p="Matrix3x2.lua" t="Include" />
+              <e p="Matrix4x4.lua" t="Include" />
+              <e p="Plane.lua" t="Include" />
+              <e p="Quaternion.lua" t="Include" />
+              <e p="Vector2.lua" t="Include" />
+              <e p="Vector3.lua" t="Include" />
+              <e p="Vector4.lua" t="Include" />
+            </e>
+            <e p="Random.lua" t="Include" />
+            <e p="Reflection" t="Include">
+              <e p="Assembly.lua" t="Include" />
+            </e>
+            <e p="String.lua" t="Include" />
+            <e p="Text" t="Include">
+              <e p="StringBuilder.lua" t="Include" />
+            </e>
+            <e p="Threading" t="Include">
+              <e p="Task.lua" t="Include" />
+              <e p="Thread.lua" t="Include" />
+              <e p="Timer.lua" t="Include" />
+            </e>
+            <e p="TimeSpan.lua" t="Include" />
+            <e p="Type.lua" t="Include" />
+            <e p="Utilities.lua" t="Include" />
+          </e>
+          <e p="Sample" t="Include">
+            <e p="test.lua" t="Include" />
+          </e>
+        </e>
+        <e p="CSharp.lua.csproj" t="IncludeRecursive" />
+        <e p="LuaAst" t="Include">
+          <e p="LuaBlockSyntax.cs" t="Include" />
+          <e p="LuaCompilationUnitSyntax.cs" t="Include" />
+          <e p="LuaExpressionSyntax.cs" t="Include" />
+          <e p="LuaFunctionExpressSyntax.cs" t="Include" />
+          <e p="LuaIdentifierNameSyntax.cs" t="Include" />
+          <e p="LuaIfStatementSyntax.cs" t="Include" />
+          <e p="LuaInvocationExpressionSyntax.cs" t="Include" />
+          <e p="LuaLiteralExpressionSyntax.cs" t="Include" />
+          <e p="LuaLocalDeclarationStatementSyntax.cs" t="Include" />
+          <e p="LuaLoopStatement.cs" t="Include" />
+          <e p="LuaMemberAccessExpressionSyntax.cs" t="Include" />
+          <e p="LuaStatementSyntax.cs" t="Include" />
+          <e p="LuaSyntaxNode.cs" t="Include" />
+          <e p="LuaTableExpression.cs" t="Include" />
+          <e p="LuaTypeDeclarationSyntax.cs" t="Include" />
+          <e p="LuaWrapFunctionStatementSynatx.cs" t="Include" />
+        </e>
+        <e p="LuaRenderer.cs" t="Include" />
+        <e p="LuaSyntaxGenerator.cs" t="Include" />
+        <e p="LuaSyntaxNodeTransform.cs" t="Include" />
+        <e p="LuaSyntaxNodeTransform.Helper.cs" t="Include" />
+        <e p="LuaSyntaxNodeTransform.Object.cs" t="Include" />
+        <e p="LuaSyntaxNodeTransform.Query.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Release" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="CSharp.lua.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="PublishProfiles" t="Include">
+            <e p="FolderProfile.pubxml" t="Include" />
+          </e>
+        </e>
+        <e p="System.xml" t="Include" />
+        <e p="Utils.cs" t="Include" />
+        <e p="XmlMetaProvider.cs" t="Include" />
+      </e>
+      <e p="CSharp.lua.Launcher" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CSharp.lua.Launcher.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Release" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="CSharp.lua.Launcher.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="PublishProfiles" t="Include">
+            <e p="FolderProfile.pubxml" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="CSharp.lua.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

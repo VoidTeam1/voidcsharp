@@ -466,6 +466,12 @@ local function cast(cls, obj, nullable)
     if is(obj, cls) then
       return obj
     end
+
+    -- this can cause trouble, beware! (dynamic support)
+    if (getName(obj) == nil and cls.__name__ == "System.Object") then
+      return obj
+    end
+
     throw(InvalidCastException(("Unable to cast object of type '%s' to type '%s'."):format(getName(obj), cls.__name__)), 1)
   else
     if cls.class ~= "S" or nullable then

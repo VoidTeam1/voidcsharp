@@ -1478,12 +1478,16 @@ end
 function System.init(t)
   local path = t.path
   local files, dirs = file.Find(path .. "/*", "LUA" )
+  local programCsExists = false
   if files then
     path = (path and #path > 0) and (path .. '/') or ""
     for k, v in pairs(files) do
       v = v:lower()
       if (v == "manifest.lua") then continue end
-      if (v == "program.lua") then continue end -- load program as the last file
+      if (v == "program.lua") then
+        programCsExists = true
+        continue
+      end -- load program as the last file
       t.loaderF(path .. v)
       if (SERVER) then
         AddCSLuaFile(path .. v)
@@ -1501,9 +1505,11 @@ function System.init(t)
         end
     end
 
-    t.loaderF(path .. "program.lua")
-    if (SERVER) then
-      AddCSLuaFile(path .. "program.lua")
+    if (programCsExists) then
+      t.loaderF(path .. "program.lua")
+      if (SERVER) then
+        AddCSLuaFile(path .. "program.lua")
+      end
     end
   end
 

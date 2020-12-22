@@ -1,0 +1,13 @@
+F:\gmod\garrysmod\addons\voidcsharp\src\bin\Debug\netcoreapp3.1\VoidSharp.exe
+F:\gmod\garrysmod\addons\voidcsharp\src\bin\Debug\netcoreapp3.1\VoidSharp.deps.json
+F:\gmod\garrysmod\addons\voidcsharp\src\bin\Debug\netcoreapp3.1\VoidSharp.runtimeconfig.json
+F:\gmod\garrysmod\addons\voidcsharp\src\bin\Debug\netcoreapp3.1\VoidSharp.runtimeconfig.dev.json
+F:\gmod\garrysmod\addons\voidcsharp\src\bin\Debug\netcoreapp3.1\VoidSharp.dll
+F:\gmod\garrysmod\addons\voidcsharp\src\bin\Debug\netcoreapp3.1\VoidSharp.pdb
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.csprojAssemblyReference.cache
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.AssemblyInfoInputs.cache
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.AssemblyInfo.cs
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.csproj.CoreCompileInputs.cache
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.dll
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.pdb
+F:\gmod\garrysmod\addons\voidcsharp\src\obj\Debug\netcoreapp3.1\VoidSharp.genruntimeconfig.cache

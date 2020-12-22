@@ -1,0 +1,10 @@
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\bin\Release\netstandard2.1\System.xml
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\bin\Release\netstandard2.1\CSharp.lua.deps.json
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\bin\Release\netstandard2.1\CSharp.lua.dll
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\bin\Release\netstandard2.1\CSharp.lua.pdb
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\obj\Release\netstandard2.1\CSharp.lua.csprojAssemblyReference.cache
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\obj\Release\netstandard2.1\CSharp.lua.AssemblyInfoInputs.cache
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\obj\Release\netstandard2.1\CSharp.lua.AssemblyInfo.cs
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\obj\Release\netstandard2.1\CSharp.lua.csproj.CoreCompileInputs.cache
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\obj\Release\netstandard2.1\CSharp.lua.dll
+F:\gmod\garrysmod\addons\voidchar2\devenv\src\CSharp.lua\obj\Release\netstandard2.1\CSharp.lua.pdb

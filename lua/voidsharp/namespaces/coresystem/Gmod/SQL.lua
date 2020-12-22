@@ -4,9 +4,9 @@ local System = System
 local DictStringObject = System.Dictionary(System.String, System.Object)
 local ListDictStringObject = System.List(DictStringObject)
 
-local VoidChar2ORM
+local VoidSharpORM
 System.import(function (out)
-  VoidChar2ORM = VoidChar2.ORM
+  VoidSharpORM = VoidSharp.ORM
 end)
 
 local SQLite = System.define("VoidSharp.SQLite", {
@@ -56,12 +56,12 @@ local MySQLoo = System.define("VoidSharp.MySQLoo", {
     mysqlooConn:connect()
 
     mysqlooConn.onConnected = function (db)
-      local result = VoidChar2ORM.DatabaseConnectionResult(false, nil)
+      local result = VoidSharpORM.DatabaseConnectionResult(false, nil)
       task:SetResult(result)
     end
 
     mysqlooConn.onConnectionFailed = function (db, err)
-      local result = VoidChar2ORM.DatabaseConnectionResult(true, err)
+      local result = VoidSharpORM.DatabaseConnectionResult(true, err)
       task:SetResult(result)
     end
 

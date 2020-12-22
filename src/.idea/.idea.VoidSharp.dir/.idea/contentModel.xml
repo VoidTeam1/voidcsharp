@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.01" t="ExcludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
+    <e p="F:\gmod\garrysmod\addons\voidcsharp\src" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="compile.bat" t="Include" />
+      <e p="gmod" t="Include">
+        <e p="Color.cs" t="Include" />
+        <e p="DarkRP" t="Include">
+          <e p="DarkRP.cs" t="Include" />
+          <e p="Job.cs" t="Include" />
+        </e>
+        <e p="Entities.cs" t="Include" />
+        <e p="Entity.cs" t="Include" />
+        <e p="Enums" t="Include">
+          <e p="DockType.cs" t="Include" />
+        </e>
+        <e p="File.cs" t="Include" />
+        <e p="Game.cs" t="Include" />
+        <e p="Globals.cs" t="Include" />
+        <e p="Hook.cs" t="Include" />
+        <e p="JSON.cs" t="Include" />
+        <e p="Net.cs" t="Include" />
+        <e p="Panel.cs" t="Include" />
+        <e p="Player.cs" t="Include" />
+        <e p="Players.cs" t="Include" />
+        <e p="Realm.cs" t="Include" />
+        <e p="SQL.cs" t="Include" />
+        <e p="Surface.cs" t="Include" />
+        <e p="Team.cs" t="Include" />
+        <e p="Vector.cs" t="Include" />
+        <e p="VGUI.cs" t="Include" />
+        <e p="VoidLib.cs" t="Include" />
+        <e p="VoidUI" t="Include">
+          <e p="Frame.cs" t="Include" />
+          <e p="Sidebar.cs" t="Include" />
+          <e p="Tabs.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Handlers" t="Include">
+        <e p="ConCommandAttribute.cs" t="Include" />
+        <e p="ConCommandHandler.cs" t="Include" />
+        <e p="HookAttribute.cs" t="Include" />
+        <e p="HookHandler.cs" t="Include" />
+      </e>
+      <e p="Models" t="Include" />
+      <e p="Networking" t="Include">
+        <e p="DataSerializer.cs" t="Include" />
+        <e p="INetworkSerializer.cs" t="Include" />
+        <e p="NetworkReader.cs" t="Include" />
+        <e p="NetworkWriter.cs" t="Include" />
+        <e p="RPC.cs" t="Include" />
+        <e p="RPCAttribute.cs" t="Include" />
+        <e p="SerializerMap.cs" t="Include" />
+        <e p="Serializers" t="Include">
+          <e p="BoolSerializer.cs" t="Include" />
+          <e p="ColorSerializer.cs" t="Include" />
+          <e p="DateTimeSerializer.cs" t="Include" />
+          <e p="IntegerSerializer.cs" t="Include" />
+          <e p="JobSerializer.cs" t="Include" />
+          <e p="StringSerializer.cs" t="Include" />
+          <e p="UIntegerSerializer.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="VoidSharp.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="ORM" t="Include">
+        <e p="Attributes" t="Include">
+          <e p="AutoIncrementAttribute.cs" t="Include" />
+          <e p="ColumnLengthAttribute.cs" t="Include" />
+          <e p="PrimaryKeyAttribute.cs" t="Include" />
+          <e p="TableAttribute.cs" t="Include" />
+        </e>
+        <e p="Database.cs" t="Include" />
+        <e p="DatabaseConnectionResult.cs" t="Include" />
+        <e p="DatabaseCredentials.cs" t="Include" />
+        <e p="DatabaseMapper.cs" t="Include" />
+        <e p="DatabaseResult.cs" t="Include" />
+        <e p="Migrations" t="Include">
+          <e p="Migration.cs" t="Include" />
+          <e p="MigrationManager.cs" t="Include" />
+        </e>
+        <e p="ObjectMapper.cs" t="Include" />
+        <e p="QueryTypes" t="Include">
+          <e p="AlterQueryType.cs" t="Include" />
+          <e p="CreateQueryType.cs" t="Include" />
+          <e p="DeleteQueryType.cs" t="Include" />
+          <e p="DropQueryType.cs" t="Include" />
+          <e p="InsertQueryType.cs" t="Include" />
+          <e p="QueryType.cs" t="Include" />
+          <e p="SelectQueryType.cs" t="Include" />
+          <e p="UpdateQueryType.cs" t="Include" />
+        </e>
+        <e p="SerializerBase.cs" t="Include" />
+        <e p="SerializerMap.cs" t="Include" />
+        <e p="Serializers" t="Include">
+          <e p="BoolSerializer.cs" t="Include" />
+          <e p="ColorSerializer.cs" t="Include" />
+          <e p="DateTimeSerializer.cs" t="Include" />
+          <e p="DynamicSerializer.cs" t="Include" />
+          <e p="IntegerSerializer.cs" t="Include" />
+          <e p="JobSerializer.cs" t="Include" />
+          <e p="StringSerializer.cs" t="Include" />
+        </e>
+        <e p="Specifiers" t="Include">
+          <e p="AlterSpecifier.cs" t="Include" />
+          <e p="InsertSpecifier.cs" t="Include" />
+          <e p="WhereSpecifier.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Utilities" t="Include">
+        <e p="Logger.cs" t="Include" />
+      </e>
+      <e p="VoidSharp.csproj" t="IncludeRecursive" />
+    </e>
+  </component>
+</project>
