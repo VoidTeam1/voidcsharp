@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.01" t="ExcludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.00" t="ExcludeRecursive" />
     <e p="C:\Users\m0uka\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
     <e p="F:\gmod\garrysmod\addons\voidcsharp\src" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />
@@ -35,9 +35,17 @@
         <e p="VGUI.cs" t="Include" />
         <e p="VoidLib.cs" t="Include" />
         <e p="VoidUI" t="Include">
+          <e p="BackgroundPanel.cs" t="Include" />
+          <e p="Button.cs" t="Include" />
+          <e p="ColorPicker.cs" t="Include" />
+          <e p="Dropdown.cs" t="Include" />
+          <e p="ElementGrid.cs" t="Include" />
           <e p="Frame.cs" t="Include" />
+          <e p="Grid.cs" t="Include" />
+          <e p="Search.cs" t="Include" />
           <e p="Sidebar.cs" t="Include" />
           <e p="Tabs.cs" t="Include" />
+          <e p="TextInput.cs" t="Include" />
         </e>
       </e>
       <e p="Handlers" t="Include">
