@@ -68,9 +68,9 @@ namespace VoidSharp
         /// <param name="panel">The panel name.</param>
         public Panel Add(string panel)
         {
-            Panel resultPanel = new Panel(panel);
-            VGUIPanel.Add(resultPanel.VGUIPanel);
-            return resultPanel;
+            object gPanel = VGUIPanel.Add(panel);
+            Panel fPanel = new Panel(gPanel);
+            return fPanel;
         }
         
         /// <summary>

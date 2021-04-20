@@ -15,6 +15,7 @@
         </e>
         <e p="Derma" t="Include">
           <e p="Button.cs" t="Include" />
+          <e p="ColorMixer.cs" t="Include" />
           <e p="Frame.cs" t="Include" />
           <e p="TextEntry.cs" t="Include" />
         </e>

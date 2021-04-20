@@ -56,7 +56,7 @@ namespace VoidSharp.ORM
                 Logger.LogInfo("Initialized local SQLite database instance!", "Database");
             }
             
-            CreateTables(entryPoint);
+            await CreateTables(entryPoint);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace VoidSharp.ORM
         /// <summary>
         /// Creates all the tables from Models.
         /// </summary>
-        private void CreateTables(Type entryPoint)
+        private async Task CreateTables(Type entryPoint)
         {
             CreateQueryType createQueryType = new CreateQueryType(this);
 
@@ -91,7 +91,9 @@ namespace VoidSharp.ORM
             {
                 if (type.GetCustomAttributes(typeof(TableAttribute), true).Length > 0) {
                     string query = createQueryType.GenerateQuery(type);
-                    Query<object>(query).ContinueWith(x => { });
+                    var result = await Query<object>(query);
+                    
+                    Console.WriteLine(result.Result);
                 }
             }
 

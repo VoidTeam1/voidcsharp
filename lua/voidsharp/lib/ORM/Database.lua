@@ -58,7 +58,7 @@ System.namespace("VoidSharp.ORM", function (namespace)
           VoidSharpUtilities.Logger.LogInfo("Initialized local SQLite database instance!", "Database")
         end
 
-        CreateTables(this, entryPoint)
+        async:await(CreateTables(this, entryPoint))
       end, nil, this, entryPoint)
     end
     -- <summary>
@@ -77,21 +77,24 @@ System.namespace("VoidSharp.ORM", function (namespace)
     -- Creates all the tables from Models.
     -- </summary>
     CreateTables = function (this, entryPoint)
-      local createQueryType = VoidSharpORMQueryTypes.CreateQueryType(this)
+      return System.async(function (async, this, entryPoint)
+        local createQueryType = VoidSharpORMQueryTypes.CreateQueryType(this)
 
-      local assembly = SystemReflection.Assembly.GetAssembly(entryPoint)
+        local assembly = SystemReflection.Assembly.GetAssembly(entryPoint)
 
-      if assembly == nil then
-        System.throw(System.Exception("Entry assembly not found. Could not find ORM models."))
-      end
-
-      for _, type in System.each(assembly:GetExportedTypes()) do
-        if #type:GetCustomAttributes(System.typeof(VoidSharpORMAttributes.TableAttribute), true) > 0 then
-          local query = createQueryType:GenerateQuery(type)
-          Query(this, query, System.Object):ContinueWith(function (x)
-          end)
+        if assembly == nil then
+          System.throw(System.Exception("Entry assembly not found. Could not find ORM models."))
         end
-      end
+
+        for _, type in System.each(assembly:GetExportedTypes()) do
+          if #type:GetCustomAttributes(System.typeof(VoidSharpORMAttributes.TableAttribute), true) > 0 then
+            local query = createQueryType:GenerateQuery(type)
+            local result = async:await(Query(this, query, System.Object))
+
+            System.Console.WriteLine(result.Result)
+          end
+        end
+      end, nil, this, entryPoint)
     end
     -- <summary>
     -- Performs an SQL query on the Database directly. This is used internally, but can be also used
@@ -182,7 +185,7 @@ System.namespace("VoidSharp.ORM", function (namespace)
             { "AddSerializers", 0x1, AddSerializers },
             { "Alter", 0x10086, Alter, function (T) return out.VoidSharp.ORM.QueryTypes.AlterQueryType_1(T) end },
             { "Connect", 0x186, Connect, System.Type, System.Task },
-            { "CreateTables", 0x101, CreateTables, System.Type },
+            { "CreateTables", 0x181, CreateTables, System.Type, System.Task },
             { "Delete", 0x10086, Delete, function (T) return out.VoidSharp.ORM.QueryTypes.DeleteQueryType_1(T) end },
             { "Drop", 0x10086, Drop, function (T) return out.VoidSharp.ORM.QueryTypes.DropQueryType_1(T) end },
             { "Insert", 0x10186, Insert, function (T) return System.Object, out.VoidSharp.ORM.QueryTypes.InsertQueryType_1(T) end },

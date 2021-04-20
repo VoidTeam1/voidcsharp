@@ -50,9 +50,9 @@ System.namespace("VoidSharp", function (namespace)
     -- </summary>
     -- <param name="panel">The panel name.</param>
     Add = function (this, panel)
-      local resultPanel = class(panel)
-      this.VGUIPanel:Add(resultPanel.VGUIPanel)
-      return resultPanel
+      local gPanel = this.VGUIPanel:Add(panel)
+      local fPanel = System.new(class, 2, gPanel)
+      return fPanel
     end
     -- <summary>
     -- Parents the supplied panel to the current panel.

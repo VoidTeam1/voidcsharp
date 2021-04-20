@@ -43,9 +43,7 @@ System.namespace("VoidSharp.Networking", function (namespace)
             -- Remove the player parameter
 
             VoidSharp.Net.Receive1("voidsharp_" .. method:getName(), function (i, gPlayer)
-              System.Console.WriteLine(gPlayer:Nick())
               local player = VoidSharp.Player(gPlayer)
-              System.Console.WriteLine(player:getNick())
               local serializer = VoidSharpNetworking.DataSerializer()
 
               local reader = VoidSharpNetworking.NetworkReader()
