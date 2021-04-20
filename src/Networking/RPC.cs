@@ -116,7 +116,7 @@ namespace VoidSharp.Networking
         /// <summary>
         /// This sends a RPC to all players or if called clientside sends to the server.
         /// </summary>
-        public static void SendToAll<TClass>(string methodName, TClass T) where TClass : class, new()
+        public static void Send<TClass>(string methodName, TClass T) where TClass : class, new()
         {
             Net.Start("voidsharp_" + methodName);
             WriteData(T);
