@@ -8,7 +8,7 @@ namespace VoidSharp.VoidUI
         {
         }
 
-        public override object Value
+        public string Value
         {
             get => VGUIPanel.entry.GetValue();
             set => VGUIPanel.entry.SetColor(value);

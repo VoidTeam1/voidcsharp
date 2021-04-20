@@ -219,15 +219,6 @@ namespace VoidSharp
         }
         
         #endregion
-
-        #region Values
-
-        public virtual object Value
-        {
-            get => VGUIPanel.GetValue();
-            set => VGUIPanel.SetValue(value);
-        }
-
-        #endregion
+        
     }
 }
