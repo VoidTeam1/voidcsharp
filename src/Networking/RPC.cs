@@ -38,8 +38,9 @@ namespace VoidSharp.Networking
                 {
                     attrTypes.RemoveAt(0); // Remove the player parameter
                     
-                    Net.Receive("voidsharp_" + method.Name, (i, player) =>
+                    Net.Receive("voidsharp_" + method.Name, (i, gPlayer) =>
                     {
+                        var player = new Player(gPlayer);
                         var serializer = new DataSerializer();
                         
                         var reader = new NetworkReader();

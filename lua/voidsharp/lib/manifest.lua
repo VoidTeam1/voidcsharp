@@ -181,12 +181,14 @@ return function (path, loaderF)
     },
     loaderF = loaderF,
     Main = "VoidSharp.Program.Main",
-    assembly = function (out)
-      return {
-        System.apply(System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v3.1"), function (default)
-          default:setFrameworkDisplayName("")
-        end)
-      }
-    end
+    assembly = {
+      Company = "VoidSharp",
+      Configuration = "Debug",
+      FileVersion = "1.0.0.0",
+      InformationalVersion = "1.0.0",
+      Product = "VoidSharp",
+      Title = "VoidSharp",
+      Version = "1.0.0.0"
+    }
   })
 end

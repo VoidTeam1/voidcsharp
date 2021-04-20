@@ -68,7 +68,7 @@ System.namespace("VoidSharp", function (namespace)
             { "Broadcast", 0xE, Broadcast },
             { "ReadString", 0x8E, ReadString, System.String },
             { "Receive", 0x20E, Receive, System.String, System.Delegate(System.Int32, System.Void) },
-            { "Receive", 0x20E, Receive1, System.String, System.Delegate(System.Int32, out.VoidSharp.Player, System.Void) },
+            { "Receive", 0x20E, Receive1, System.String, System.Delegate(System.Int32, System.Object, System.Void) },
             { "Send", 0x10E, Send, out.VoidSharp.Player },
             { "Send", 0x10E, Send1, System.Array(out.VoidSharp.Player) },
             { "SendToServer", 0xE, SendToServer },

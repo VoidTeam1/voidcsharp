@@ -79,7 +79,7 @@
         {
             
         }
-        public static void Receive(string id, Action<int, Player> action)
+        public static void Receive(string id, Action<int, dynamic> action)
         {
             /*
             [[

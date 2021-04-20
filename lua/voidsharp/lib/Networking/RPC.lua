@@ -12,7 +12,7 @@ end)
 System.namespace("VoidSharp.Networking", function (namespace)
   -- ReSharper disable once InconsistentNaming
   namespace.class("RPC", function (namespace)
-    local ShouldReadAsSingle, RegisterInstance, AddNetworkString, WriteData, ClassFromObj, WriteSingle, SendToAll, SendToClient, 
+    local ShouldReadAsSingle, RegisterInstance, AddNetworkString, WriteData, ClassFromObj, WriteSingle, Send, SendToClient, 
     SendToClients
     ShouldReadAsSingle = function (type)
       local isClass = type:getIsClass()
@@ -42,7 +42,10 @@ System.namespace("VoidSharp.Networking", function (namespace)
             attrTypes:RemoveAt(0)
             -- Remove the player parameter
 
-            VoidSharp.Net.Receive1("voidsharp_" .. method:getName(), function (i, player)
+            VoidSharp.Net.Receive1("voidsharp_" .. method:getName(), function (i, gPlayer)
+              System.Console.WriteLine(gPlayer:Nick())
+              local player = VoidSharp.Player(gPlayer)
+              System.Console.WriteLine(player:getNick())
               local serializer = VoidSharpNetworking.DataSerializer()
 
               local reader = VoidSharpNetworking.NetworkReader()
@@ -118,7 +121,7 @@ System.namespace("VoidSharp.Networking", function (namespace)
     -- <summary>
     -- This sends a RPC to all players or if called clientside sends to the server.
     -- </summary>
-    SendToAll = function (methodName, T, TClass)
+    Send = function (methodName, T, TClass)
       net.Start("voidsharp_" .. methodName)
       WriteData(T, TClass)
       if VoidSharp.Realm.IsClient() then
@@ -154,7 +157,7 @@ System.namespace("VoidSharp.Networking", function (namespace)
     return {
       RegisterInstance = RegisterInstance,
       AddNetworkString = AddNetworkString,
-      SendToAll = SendToAll,
+      Send = Send,
       SendToClient = SendToClient,
       SendToClients = SendToClients,
       __metadata__ = function (out)
@@ -163,7 +166,7 @@ System.namespace("VoidSharp.Networking", function (namespace)
             { "AddNetworkString", 0x10E, AddNetworkString, System.String },
             { "ClassFromObj", 0x189, ClassFromObj, System.Object, System.Object },
             { "RegisterInstance", 0x10E, RegisterInstance, System.Object },
-            { "SendToAll", 0x1020E, SendToAll, function (TClass) return System.String, TClass end },
+            { "Send", 0x1020E, Send, function (TClass) return System.String, TClass end },
             { "SendToClient", 0x1030E, SendToClient, function (TClass) return out.VoidSharp.Player, System.String, TClass end },
             { "SendToClients", 0x1030E, SendToClients, function (TClass) return System.Array(out.VoidSharp.Player), System.String, TClass end },
             { "ShouldReadAsSingle", 0x189, ShouldReadAsSingle, System.Type, System.Boolean },
