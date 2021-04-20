@@ -7,11 +7,14 @@ end)
 System.namespace("VoidSharp", function (namespace)
   namespace.class("Entity", function (namespace)
     local getIsPlayer, getIsValid, getClass, getModel, setModel, getPos, setPos, getColor, 
-    setColor, FromGmod, class, __ctor1__, __ctor2__
+    setColor, FromGmod, class, __ctor1__, __ctor2__, __ctor3__
     __ctor1__ = function (this, entity)
       this.GmodEntity = entity
     end
-    __ctor2__ = function (this, className)
+    __ctor2__ = function (this, entity, sig)
+      this.GmodEntity = entity
+    end
+    __ctor3__ = function (this, className)
       this.GmodEntity = VoidSharp.Globals.getEnts():Create(className)
     end
     getIsPlayer = function (this)
@@ -57,7 +60,8 @@ System.namespace("VoidSharp", function (namespace)
       FromGmod = FromGmod,
       __ctor__ = {
         __ctor1__,
-        __ctor2__
+        __ctor2__,
+        __ctor3__
       },
       __metadata__ = function (out)
         return {
@@ -71,8 +75,9 @@ System.namespace("VoidSharp", function (namespace)
             { "Pos", 0x106, out.Vector, getPos, setPos }
           },
           methods = {
-            { ".ctor", 0x101, __ctor1__, System.Object },
-            { ".ctor", 0x106, __ctor2__, System.String },
+            { ".ctor", 0x106, __ctor1__, System.Object },
+            { ".ctor", 0x206, __ctor2__, System.Object, System.Boolean },
+            { ".ctor", 0x106, __ctor3__, System.String },
             { "FromGmod", 0x18E, FromGmod, System.Object, class }
           },
           class = { 0x6 }

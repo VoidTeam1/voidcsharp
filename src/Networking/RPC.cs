@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -115,7 +116,7 @@ namespace VoidSharp.Networking
         /// <summary>
         /// This sends a RPC to all players or if called clientside sends to the server.
         /// </summary>
-        public static void Send<TClass>(string methodName, TClass T) where TClass : class, new()
+        public static void SendToAll<TClass>(string methodName, TClass T) where TClass : class, new()
         {
             Net.Start("voidsharp_" + methodName);
             WriteData(T);
@@ -129,71 +130,71 @@ namespace VoidSharp.Networking
             }
         }
         
-        /// <summary>
-        /// Sends a RPC with the passed objects to everyone/server.
-        /// </summary>
-        public static void Send(string methodName, params object[] objs)
-        {
-            Net.Start("voidsharp_" + methodName);
-
-            var writer = new NetworkWriter();
-            
-            foreach (var obj in objs)
-            {
-                WriteSingle(writer, obj);
-            }
-            
-            if (Realm.IsClient())
-            {
-                Net.SendToServer();
-            }
-            else
-            {
-                Net.Broadcast();
-            }
-        }
-        
-        /// <summary>
-        /// Sends a RPC to a specified target with passed objects.
-        /// </summary>
-        public static void Send(Player target, string methodName, params object[] objs)
-        {
-            Net.Start("voidsharp_" + methodName);
-
-            var writer = new NetworkWriter();
-            
-            foreach (var obj in objs)
-            {
-                WriteSingle(writer, obj);
-            }
-            
-            Net.Send(target);
-        }
-        
-        public static void Send(Player[] targets, string methodName, params object[] objs)
-        {
-            Net.Start("voidsharp_" + methodName);
-
-            var writer = new NetworkWriter();
-            
-            foreach (var obj in objs)
-            {
-                WriteSingle(writer, obj);
-            }
-            
-            Net.Send(targets);
-        }
+        // /// <summary>
+        // /// Sends a RPC to a specified target with passed objects.
+        // /// </summary>
+        // public static void SendToClient(Player target, string methodName, params dynamic[] objs)
+        // {
+        //     Net.Start("voidsharp_" + methodName);
+        //
+        //     var writer = new NetworkWriter();
+        //     
+        //     foreach (var obj in objs)
+        //     {
+        //         WriteSingle(writer, obj);
+        //     }
+        //     
+        //     Net.Send(target);
+        // }
+        //
+        // /// <summary>
+        // /// Sends a RPC with the passed objects to everyone/server.
+        // /// </summary>
+        // public static void SendToServer(string methodName, params dynamic[] objs)
+        // {
+        //     Net.Start("voidsharp_" + methodName);
+        //
+        //     var writer = new NetworkWriter();
+        //     
+        //     foreach (var obj in objs)
+        //     {
+        //         WriteSingle(writer, obj);
+        //     }
+        //     
+        //     if (Realm.IsClient())
+        //     {
+        //         Net.SendToServer();
+        //     }
+        //     else
+        //     {
+        //         Net.Broadcast();
+        //     }
+        // }
+        //
+        // public static void SendToClients(Player[] targets, string methodName, params dynamic[] objs)
+        // {
+        //     Net.Start("voidsharp_" + methodName);
+        //
+        //     var writer = new NetworkWriter();
+        //     
+        //     foreach (var obj in objs)
+        //     {
+        //         WriteSingle(writer, obj);
+        //     }
+        //     
+        //     Net.Send(targets);
+        // }
         
         /// <summary>
         /// This sends a RPC to a specific player.
         /// </summary>
-        public static void Send<TClass>(Player target, string methodName, TClass T) where TClass : class, new()
+        public static void SendToClient<TClass>(Player target, string methodName, TClass T) where TClass : class, new()
         {
             if (Realm.IsClient())
             {
                 throw new Exception("Trying to call serverside operation from clientside!!");
             }
-            
+
             Net.Start("voidsharp_" + methodName);
             WriteData(T);
             Net.Send(target);
@@ -202,7 +203,7 @@ namespace VoidSharp.Networking
         /// <summary>
         /// This sends a RPC to specific players.
         /// </summary>
-        public static void Send<TClass>(Player[] targets, string methodName, TClass T) where TClass : class, new()
+        public static void SendToClients<TClass>(Player[] targets, string methodName, TClass T) where TClass : class, new()
         {
             if (Realm.IsClient())
             {

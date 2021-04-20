@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VoidSharp
 {
@@ -13,8 +14,8 @@ namespace VoidSharp
             List<Player> players = new List<Player>();
             foreach (dynamic player in Globals.Players.GetAll())
             {
-                var ply = new Entity(player);
-                players.Add((Player)ply);
+                var ply = new Player(player);
+                players.Add(ply);
             }
             return players.ToArray();
         }

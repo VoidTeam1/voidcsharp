@@ -7,9 +7,9 @@ end)
 System.namespace("VoidSharp", function (namespace)
   namespace.class("Panel", function (namespace)
     local getX, setX, getY, setY, getIsHovered, getParent, setParent, Cast, 
-    Add, Add1, Add2, SetSize, SetWide, SetTall, SetPos, Center, 
-    MakePopup, Dock, DockMargin, Margin, MarginLeft, MarginRight, MarginTop, MarginBottom, 
-    getValue, setValue, class, __ctor1__, __ctor2__
+    Add, Add1, Add2, SetSize, SetWide, SetTall, getHeight, setHeight, 
+    getWidth, setWidth, SetPos, Center, MakePopup, Dock, DockMargin, Margin, 
+    MarginLeft, MarginRight, MarginTop, MarginBottom, class, __ctor1__, __ctor2__
     __ctor1__ = function (this, name)
       this.VGUIPanel = VoidSharp.VGUI.Create(name)
       this.VGUIPanel.VoidSharpPanel = this
@@ -90,6 +90,18 @@ System.namespace("VoidSharp", function (namespace)
     SetTall = function (this, h)
       this.VGUIPanel:SetTall(h)
     end
+    getHeight = function (this)
+      return this.VGUIPanel:GetTall()
+    end
+    setHeight = function (this, value)
+      this.VGUIPanel:SetTall(value)
+    end
+    getWidth = function (this)
+      return this.VGUIPanel:GetWide()
+    end
+    setWidth = function (this, value)
+      this.VGUIPanel:SetWide(value)
+    end
     -- <summary>
     -- Sets the position of the panel.
     -- </summary>
@@ -162,12 +174,6 @@ System.namespace("VoidSharp", function (namespace)
     MarginBottom = function (this, val)
       this.VGUIPanel:MarginBottom(val)
     end
-    getValue = function (this)
-      return this.VGUIPanel:GetValue()
-    end
-    setValue = function (this, value)
-      this.VGUIPanel:SetValue(value)
-    end
     class = {
       getX = getX,
       setX = setX,
@@ -183,6 +189,10 @@ System.namespace("VoidSharp", function (namespace)
       SetSize = SetSize,
       SetWide = SetWide,
       SetTall = SetTall,
+      getHeight = getHeight,
+      setHeight = setHeight,
+      getWidth = getWidth,
+      setWidth = setWidth,
       SetPos = SetPos,
       Center = Center,
       MakePopup = MakePopup,
@@ -193,8 +203,6 @@ System.namespace("VoidSharp", function (namespace)
       MarginRight = MarginRight,
       MarginTop = MarginTop,
       MarginBottom = MarginBottom,
-      getValue = getValue,
-      setValue = setValue,
       __ctor__ = {
         __ctor1__,
         __ctor2__
@@ -202,10 +210,11 @@ System.namespace("VoidSharp", function (namespace)
       __metadata__ = function (out)
         return {
           properties = {
+            { "Height", 0x106, System.Int32, getHeight, setHeight },
             { "IsHovered", 0x206, System.Boolean, getIsHovered },
             { "Parent", 0x106, class, getParent, setParent },
-            { "Value", 0x106, System.Object, getValue, setValue },
             { "VGUIPanel", 0x6, System.Object },
+            { "Width", 0x106, System.Int32, getWidth, setWidth },
             { "X", 0x106, System.Int32, getX, setX },
             { "Y", 0x106, System.Int32, getY, setY }
           },

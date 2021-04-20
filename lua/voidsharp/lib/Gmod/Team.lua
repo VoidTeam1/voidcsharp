@@ -90,7 +90,7 @@ System.namespace("VoidSharp", function (namespace)
 
       for _, player in System.each(gmodPlayers) do
         player = System.cast(System.Object, player)
-        local ply = System.new(VoidSharp.Entity, 2, player)
+        local ply = VoidSharp.Entity()
         players:Add(System.cast(VoidSharp.Player, ply))
       end
 

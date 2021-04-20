@@ -46,7 +46,7 @@ System.namespace("VoidSharp.VoidUI", function (namespace)
             { "SetNumeric", 0x106, SetNumeric, System.Boolean }
           },
           properties = {
-            { "Value", 0x106, System.Object, getValue, setValue }
+            { "Value", 0x106, System.String, getValue, setValue }
           },
           class = { 0x6 }
         }

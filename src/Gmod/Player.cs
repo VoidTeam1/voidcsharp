@@ -3,8 +3,14 @@ using System;
 namespace VoidSharp {
 
     public class Player : Entity {
-        protected Player(string className) : base(className)
+        public Player(object gmodEntity) : base(gmodEntity)
         {
+            
+        }
+
+        public static Player LocalPlayer()
+        {
+            return new Player(Globals.G.LocalPlayer());
         }
 
         /// <summary>
@@ -27,6 +33,15 @@ namespace VoidSharp {
         /// Checks if the player is alive.
         /// </summary>
         public bool Alive => GmodEntity.Alive();
+
+        /// <summary>
+        /// Prints a message to the player's chat.
+        /// </summary>
+        /// <param name="message">The message to send.</param>
+        public void ChatPrint(string message)
+        {
+            GmodEntity.ChatPrint(message);
+        }
     }
     
 }

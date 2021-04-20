@@ -8,7 +8,12 @@ namespace VoidSharp {
     {
         public dynamic GmodEntity { get; }
 
-        private Entity(dynamic entity)
+        public Entity(dynamic entity)
+        {
+            GmodEntity = entity;
+        }
+        
+        public Entity(dynamic entity, bool sig)
         {
             GmodEntity = entity;
         }

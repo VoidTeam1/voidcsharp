@@ -12,8 +12,8 @@ end)
 System.namespace("VoidSharp.Networking", function (namespace)
   -- ReSharper disable once InconsistentNaming
   namespace.class("RPC", function (namespace)
-    local ShouldReadAsSingle, RegisterInstance, AddNetworkString, WriteData, ClassFromObj, WriteSingle, Send, Send1, 
-    Send2, Send3, Send4, Send5
+    local ShouldReadAsSingle, RegisterInstance, AddNetworkString, WriteData, ClassFromObj, WriteSingle, SendToAll, SendToClient, 
+    SendToClients
     ShouldReadAsSingle = function (type)
       local isClass = type:getIsClass()
       local default, _ = VoidSharpNetworking.SerializerMap.Serializers:TryGetValue(type)
@@ -118,7 +118,7 @@ System.namespace("VoidSharp.Networking", function (namespace)
     -- <summary>
     -- This sends a RPC to all players or if called clientside sends to the server.
     -- </summary>
-    Send = function (methodName, T, TClass)
+    SendToAll = function (methodName, T, TClass)
       net.Start("voidsharp_" .. methodName)
       WriteData(T, TClass)
       if VoidSharp.Realm.IsClient() then
@@ -126,95 +126,46 @@ System.namespace("VoidSharp.Networking", function (namespace)
       else
         net.Broadcast()
       end
-    end
-    -- <summary>
-    -- Sends a RPC with the passed objects to everyone/server.
-    -- </summary>
-    Send1 = function (methodName, objs)
-      net.Start("voidsharp_" .. methodName)
-
-      local writer = VoidSharpNetworking.NetworkWriter()
-
-      for _, obj in System.each(objs) do
-        WriteSingle(writer, obj)
-      end
-
-      if VoidSharp.Realm.IsClient() then
-        net.SendToServer()
-      else
-        net.Broadcast()
-      end
-    end
-    -- <summary>
-    -- Sends a RPC to a specified target with passed objects.
-    -- </summary>
-    Send2 = function (target, methodName, objs)
-      net.Start("voidsharp_" .. methodName)
-
-      local writer = VoidSharpNetworking.NetworkWriter()
-
-      for _, obj in System.each(objs) do
-        WriteSingle(writer, obj)
-      end
-
-      net.Send(target)
-    end
-    Send3 = function (targets, methodName, objs)
-      net.Start("voidsharp_" .. methodName)
-
-      local writer = VoidSharpNetworking.NetworkWriter()
-
-      for _, obj in System.each(objs) do
-        WriteSingle(writer, obj)
-      end
-
-      net.Send(targets)
     end
     -- <summary>
     -- This sends a RPC to a specific player.
     -- </summary>
-    Send4 = function (target, methodName, T, TClass)
+    SendToClient = function (target, methodName, T, TClass)
       if VoidSharp.Realm.IsClient() then
         System.throw(System.Exception("Trying to call serverside operation from clientside!!"))
       end
 
       net.Start("voidsharp_" .. methodName)
       WriteData(T, TClass)
-      net.Send(target)
+      VoidSharp.Net.Send(target)
     end
     -- <summary>
     -- This sends a RPC to specific players.
     -- </summary>
-    Send5 = function (targets, methodName, T, TClass)
+    SendToClients = function (targets, methodName, T, TClass)
       if VoidSharp.Realm.IsClient() then
         System.throw(System.Exception("Trying to call serverside operation from clientside!!"))
       end
 
       net.Start("voidsharp_" .. methodName)
       WriteData(T, TClass)
-      net.Send(targets)
+      VoidSharp.Net.Send1(targets)
     end
     return {
       RegisterInstance = RegisterInstance,
       AddNetworkString = AddNetworkString,
-      Send = Send,
-      Send1 = Send1,
-      Send2 = Send2,
-      Send3 = Send3,
-      Send4 = Send4,
-      Send5 = Send5,
+      SendToAll = SendToAll,
+      SendToClient = SendToClient,
+      SendToClients = SendToClients,
       __metadata__ = function (out)
         return {
           methods = {
             { "AddNetworkString", 0x10E, AddNetworkString, System.String },
             { "ClassFromObj", 0x189, ClassFromObj, System.Object, System.Object },
             { "RegisterInstance", 0x10E, RegisterInstance, System.Object },
-            { "Send", 0x1020E, Send, function (TClass) return System.String, TClass end },
-            { "Send", 0x20E, Send1, System.String, System.Array(System.Object) },
-            { "Send", 0x30E, Send2, out.VoidSharp.Player, System.String, System.Array(System.Object) },
-            { "Send", 0x30E, Send3, System.Array(out.VoidSharp.Player), System.String, System.Array(System.Object) },
-            { "Send", 0x1030E, Send4, function (TClass) return out.VoidSharp.Player, System.String, TClass end },
-            { "Send", 0x1030E, Send5, function (TClass) return System.Array(out.VoidSharp.Player), System.String, TClass end },
+            { "SendToAll", 0x1020E, SendToAll, function (TClass) return System.String, TClass end },
+            { "SendToClient", 0x1030E, SendToClient, function (TClass) return out.VoidSharp.Player, System.String, TClass end },
+            { "SendToClients", 0x1030E, SendToClients, function (TClass) return System.Array(out.VoidSharp.Player), System.String, TClass end },
             { "ShouldReadAsSingle", 0x189, ShouldReadAsSingle, System.Type, System.Boolean },
             { "WriteData", 0x10109, WriteData, function (TClass) return TClass end },
             { "WriteSingle", 0x209, WriteSingle, out.VoidSharp.Networking.NetworkWriter, System.Object }

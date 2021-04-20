@@ -122,6 +122,24 @@ namespace VoidSharp
         }
 
         /// <summary>
+        /// Property for the height
+        /// </summary>
+        public int Height
+        {
+            get => VGUIPanel.GetTall();
+            set => VGUIPanel.SetTall(value);
+        }
+
+        /// <summary>
+        /// Property for the width
+        /// </summary>
+        public int Width
+        {
+            get => VGUIPanel.GetWide();
+            set => VGUIPanel.SetWide(value);
+        }
+
+        /// <summary>
         /// Sets the position of the panel.
         /// </summary>
         /// <param name="x">The X position.</param>

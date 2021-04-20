@@ -6,6 +6,9 @@ return function (path, loaderF)
       "Gmod.Color",
       "Gmod.DarkRP.DarkRP",
       "Gmod.DarkRP.Job",
+      "Gmod.Derma.Button",
+      "Gmod.Derma.Frame",
+      "Gmod.Derma.TextEntry",
       "Gmod.Entities",
       "Gmod.Entity",
       "Gmod.File",
@@ -90,14 +93,17 @@ return function (path, loaderF)
       "Utilities.Logger"
     },
     types = {
+      "VoidSharp.Panel",
       "VoidSharp.Networking.INetworkSerializer",
       "VoidSharp.ORM.QueryTypes.QueryType",
       "VoidSharp.ORM.ISerializerBase",
       "VoidSharp.Entity",
-      "VoidSharp.Panel",
       "VoidSharp.Color",
       "VoidSharp.DarkRP.DarkRP",
       "VoidSharp.DarkRP.Job",
+      "VoidSharp.Derma.Button",
+      "VoidSharp.Derma.Frame",
+      "VoidSharp.Derma.TextEntry",
       "VoidSharp.Entities",
       "VoidSharp.Game",
       "VoidSharp.Globals",
@@ -174,6 +180,13 @@ return function (path, loaderF)
       "VoidSharp.VoidUI.TextInput"
     },
     loaderF = loaderF,
-    Main = "VoidSharp.Program.Main"
+    Main = "VoidSharp.Program.Main",
+    assembly = function (out)
+      return {
+        System.apply(System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v3.1"), function (default)
+          default:setFrameworkDisplayName("")
+        end)
+      }
+    end
   })
 end

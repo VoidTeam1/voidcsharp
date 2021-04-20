@@ -20,9 +20,17 @@ namespace VoidSharp.Derma
             set => VGUIPanel.SetNumeric(value);
         }
 
-        public void OnValueChange(Action<string> callback)
+        public bool UpdateOnType
+        {
+            get => VGUIPanel.GetUpdateOnType();
+            set => VGUIPanel.SetUpdateOnType(value);
+        }
+
+        public void OnValueChange(Action<dynamic, string> callback)
         {
             VGUIPanel.OnValueChange = callback;
         }
+        
+        
     }
 }

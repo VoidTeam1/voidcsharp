@@ -6,9 +6,12 @@ System.import(function (out)
 end)
 System.namespace("VoidSharp", function (namespace)
   namespace.class("Player", function (namespace)
-    local getNick, getSteamId, getSteamId64, getAlive, __ctor__
-    __ctor__ = function (this, className)
-      VoidSharp.Entity.__ctor__[2](this, className)
+    local LocalPlayer, getNick, getSteamId, getSteamId64, getAlive, ChatPrint, class, __ctor__
+    __ctor__ = function (this, gmodEntity)
+      VoidSharp.Entity.__ctor__[1](this, gmodEntity)
+    end
+    LocalPlayer = function ()
+      return class(_G:LocalPlayer())
     end
     getNick = function (this)
       return this.GmodEntity:Nick()
@@ -22,21 +25,32 @@ System.namespace("VoidSharp", function (namespace)
     getAlive = function (this)
       return this.GmodEntity:Alive()
     end
-    return {
+    -- <summary>
+    -- Prints a message to the player's chat.
+    -- </summary>
+    -- <param name="message">The message to send.</param>
+    ChatPrint = function (this, message)
+      this.GmodEntity:ChatPrint(message)
+    end
+    class = {
       base = function (out)
         return {
           out.VoidSharp.Entity
         }
       end,
+      LocalPlayer = LocalPlayer,
       getNick = getNick,
       getSteamId = getSteamId,
       getSteamId64 = getSteamId64,
       getAlive = getAlive,
+      ChatPrint = ChatPrint,
       __ctor__ = __ctor__,
       __metadata__ = function (out)
         return {
           methods = {
-            { ".ctor", 0x103, nil, System.String }
+            { ".ctor", 0x106, nil, System.Object },
+            { "ChatPrint", 0x106, ChatPrint, System.String },
+            { "LocalPlayer", 0x8E, LocalPlayer, class }
           },
           properties = {
             { "Alive", 0x206, System.Boolean, getAlive },
@@ -48,5 +62,6 @@ System.namespace("VoidSharp", function (namespace)
         }
       end
     }
+    return class
   end)
 end)

@@ -1,6 +1,7 @@
 ﻿﻿using System;
+ using System.Collections.Generic;
 
-namespace VoidSharp
+ namespace VoidSharp
 {
     public static class Net
     {
@@ -20,20 +21,22 @@ namespace VoidSharp
             
         }
         
-        /// <summary>
-        /// @CSharpLua.Template = "net.Send({0})"
-        /// </summary>
         public static void Send(Player player)
         {
-            
+            dynamic send = Globals.G.net.Send;
+            send(player.GmodEntity);
         }
         
-        /// <summary>
-        /// @CSharpLua.Template = "net.Send({0})"
-        /// </summary>
         public static void Send(Player[] players)
         {
-            
+            List<dynamic> list = new List<dynamic>();
+            foreach (Player player in players)
+            {
+                list.Add(player.GmodEntity);
+            }
+
+            dynamic send = Globals.G.net.Send;
+            send(list.ToArray());
         }
         
         /// <summary>
