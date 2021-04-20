@@ -31,7 +31,7 @@
             VGUIPanel.SwitchTab(tab.VGUIPanel, panel.VGUIPanel);
         }
 
-        public void AddTab(string text, string icon, Panel panel, bool bottomAlign, int[] iconSize)
+        public void AddTab(string text, object icon, Panel panel, bool bottomAlign = false, int[] iconSize = null)
         {
             VGUIPanel.AddTab(text, icon, panel.VGUIPanel, bottomAlign, iconSize);
         }

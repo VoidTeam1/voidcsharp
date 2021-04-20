@@ -1,4 +1,4 @@
-﻿VoidSharp = VoidSharp or {}
+VoidSharp = VoidSharp or {}
 VoidSharp.Loader = {}
 
 VoidSharp.TimerLastId = 0
@@ -36,5 +36,3 @@ VoidSharp.Loader.Loaded = true
 
 hook.Run("VoidSharp.Loader.Loaded", launcher)
 print("[VoidSharp] Launcher loaded!")
-
-/*

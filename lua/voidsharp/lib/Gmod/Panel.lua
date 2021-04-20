@@ -6,10 +6,10 @@ System.import(function (out)
 end)
 System.namespace("VoidSharp", function (namespace)
   namespace.class("Panel", function (namespace)
-    local getX, setX, getY, setY, getIsHovered, getParent, setParent, Add, 
-    Add1, SetSize, SetWide, SetTall, SetPos, Center, MakePopup, Dock, 
-    DockMargin, Margin, MarginLeft, MarginRight, MarginTop, MarginBottom, class, __ctor1__, 
-    __ctor2__
+    local getX, setX, getY, setY, getIsHovered, getParent, setParent, Cast, 
+    Add, Add1, Add2, SetSize, SetWide, SetTall, SetPos, Center, 
+    MakePopup, Dock, DockMargin, Margin, MarginLeft, MarginRight, MarginTop, MarginBottom, 
+    getValue, setValue, class, __ctor1__, __ctor2__
     __ctor1__ = function (this, name)
       this.VGUIPanel = VoidSharp.VGUI.Create(name)
       this.VGUIPanel.VoidSharpPanel = this
@@ -39,6 +39,12 @@ System.namespace("VoidSharp", function (namespace)
     setParent = function (this, value)
       this.VGUIPanel:SetParent(value.VGUIPanel)
     end
+    Cast = function (this, T)
+      local default = T()
+      default.VGUIPanel = this.VGUIPanel
+      local t = default
+      return t
+    end
     -- <summary>
     -- Creates a new panel and parents it to the current panel.
     -- </summary>
@@ -55,6 +61,12 @@ System.namespace("VoidSharp", function (namespace)
     Add1 = function (this, panel)
       this.VGUIPanel:Add(panel.VGUIPanel)
       return panel
+    end
+    Add2 = function (this, T)
+      local default = T()
+      setParent(default, this)
+      local t = default
+      return t
     end
     -- <summary>
     -- Sets the size of the panel.
@@ -150,6 +162,12 @@ System.namespace("VoidSharp", function (namespace)
     MarginBottom = function (this, val)
       this.VGUIPanel:MarginBottom(val)
     end
+    getValue = function (this)
+      return this.VGUIPanel:GetValue()
+    end
+    setValue = function (this, value)
+      this.VGUIPanel:SetValue(value)
+    end
     class = {
       getX = getX,
       setX = setX,
@@ -158,8 +176,10 @@ System.namespace("VoidSharp", function (namespace)
       getIsHovered = getIsHovered,
       getParent = getParent,
       setParent = setParent,
+      Cast = Cast,
       Add = Add,
       Add1 = Add1,
+      Add2 = Add2,
       SetSize = SetSize,
       SetWide = SetWide,
       SetTall = SetTall,
@@ -173,6 +193,8 @@ System.namespace("VoidSharp", function (namespace)
       MarginRight = MarginRight,
       MarginTop = MarginTop,
       MarginBottom = MarginBottom,
+      getValue = getValue,
+      setValue = setValue,
       __ctor__ = {
         __ctor1__,
         __ctor2__
@@ -182,6 +204,7 @@ System.namespace("VoidSharp", function (namespace)
           properties = {
             { "IsHovered", 0x206, System.Boolean, getIsHovered },
             { "Parent", 0x106, class, getParent, setParent },
+            { "Value", 0x106, System.Object, getValue, setValue },
             { "VGUIPanel", 0x6, System.Object },
             { "X", 0x106, System.Int32, getX, setX },
             { "Y", 0x106, System.Int32, getY, setY }
@@ -191,6 +214,8 @@ System.namespace("VoidSharp", function (namespace)
             { ".ctor", 0x106, __ctor2__, System.Object },
             { "Add", 0x186, Add, System.String, class },
             { "Add", 0x186, Add1, class, class },
+            { "Add", 0x10086, Add2, function (T) return T end },
+            { "Cast", 0x10086, Cast, function (T) return T end },
             { "Center", 0x6, Center },
             { "Dock", 0x106, Dock, System.Int32 },
             { "DockMargin", 0x406, DockMargin, System.Int32, System.Int32, System.Int32, System.Int32 },

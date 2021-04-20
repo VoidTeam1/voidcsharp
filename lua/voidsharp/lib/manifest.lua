@@ -24,9 +24,18 @@ return function (path, loaderF)
       "Gmod.Vector",
       "Gmod.VGUI",
       "Gmod.VoidLib",
-      "Gmod.VoidUI.Frame",
-      "Gmod.VoidUI.Sidebar",
-      "Gmod.VoidUI.Tabs",
+      "Gmod.VoidUI.Icons",
+      "Gmod.VoidUI.Panels.BackgroundPanel",
+      "Gmod.VoidUI.Panels.Button",
+      "Gmod.VoidUI.Panels.ColorPicker",
+      "Gmod.VoidUI.Panels.Dropdown",
+      "Gmod.VoidUI.Panels.ElementGrid",
+      "Gmod.VoidUI.Panels.Frame",
+      "Gmod.VoidUI.Panels.Grid",
+      "Gmod.VoidUI.Panels.Search",
+      "Gmod.VoidUI.Panels.Sidebar",
+      "Gmod.VoidUI.Panels.Tabs",
+      "Gmod.VoidUI.Panels.TextInput",
       "Handlers.ConCommandAttribute",
       "Handlers.ConCommandHandler",
       "Handlers.HookAttribute",
@@ -151,20 +160,20 @@ return function (path, loaderF)
       "VoidSharp.Utilities.Logger",
       "VoidSharp.VGUI",
       "VoidSharp.VoidLib",
+      "VoidSharp.VoidUI.BackgroundPanel",
+      "VoidSharp.VoidUI.Button",
+      "VoidSharp.VoidUI.ColorPicker",
+      "VoidSharp.VoidUI.Dropdown",
+      "VoidSharp.VoidUI.ElementGrid",
       "VoidSharp.VoidUI.Frame",
+      "VoidSharp.VoidUI.Grid",
+      "VoidSharp.VoidUI.Icons",
+      "VoidSharp.VoidUI.Search",
       "VoidSharp.VoidUI.Sidebar",
-      "VoidSharp.VoidUI.Tabs"
+      "VoidSharp.VoidUI.Tabs",
+      "VoidSharp.VoidUI.TextInput"
     },
     loaderF = loaderF,
-    Main = "VoidSharp.Program.Main",
-    assembly = {
-      Company = "VoidSharp",
-      Configuration = "Debug",
-      FileVersion = "1.0.0.0",
-      InformationalVersion = "1.0.0",
-      Product = "VoidSharp",
-      Title = "VoidSharp",
-      Version = "1.0.0.0"
-    }
+    Main = "VoidSharp.Program.Main"
   })
 end

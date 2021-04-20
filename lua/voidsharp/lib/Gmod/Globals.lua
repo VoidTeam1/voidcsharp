@@ -41,7 +41,8 @@ System.namespace("VoidSharp", function (namespace)
       MsgC(unpack(args))
     end
     AddConCommand = function (name, callback, autoComplete, helpText, flags)
-      getConCommand():Add(name, callback, autoComplete, helpText, flags)
+      local func = getConCommand().Add
+      func(name, callback, autoComplete, helpText, flags)
     end
     Error = function (err)
       _G:error(err)

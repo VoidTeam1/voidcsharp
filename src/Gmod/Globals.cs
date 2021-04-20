@@ -29,7 +29,8 @@ namespace VoidSharp
 
         public static void AddConCommand(string name, Action<Player, string, string[], string> callback, Action<string, string> autoComplete = null, string helpText = null, int flags = 0)
         {
-            ConCommand.Add(name, callback, autoComplete, helpText, flags);
+            dynamic func = ConCommand.Add;
+            func(name, callback, autoComplete, helpText, flags);
         }
 
         public static void Error(string err)

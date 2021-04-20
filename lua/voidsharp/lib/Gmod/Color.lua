@@ -2,19 +2,70 @@
 local System = System
 System.namespace("VoidSharp", function (namespace)
   namespace.class("Color", function (namespace)
-    local ToString, FromGmodColor, ToGmodColor, White, Black, Red, Green, Blue, 
+    local ToString, FromGmodColor, ToGmodColor, Primary, Background, BackgroundTransparent, InputDark, InputLight, 
+    Green, LightGray, Gray, GrayTransparent, GrayText, DarkGrayTransparent, GrayDarker, GrayOverlay, 
+    White, WhiteOff, GreenTransparent, Hover, Black, TextGray, Red, Blue, 
+    Orange, BlueGradientStart, BlueGradientEnd, BlueLineGradientEnd, GreenGradientEnd, Bronze, Gold, Silver, 
     class, static, __ctor__
     static = function (this)
+      Primary = class(35, 35, 35, 255)
+      this.Primary = Primary
+      Background = class(20, 20, 20, 255)
+      this.Background = Background
+      BackgroundTransparent = class(20, 20, 20, 127)
+      this.BackgroundTransparent = BackgroundTransparent
+      InputDark = class(35, 35, 35, 255)
+      this.InputDark = InputDark
+      InputLight = class(50, 50, 50, 255)
+      this.InputLight = InputLight
+      Green = class(66, 170, 70, 255)
+      this.Green = Green
+      LightGray = class(126, 126, 126, 255)
+      this.LightGray = LightGray
+      Gray = class(222, 222, 222, 255)
+      this.Gray = Gray
+      GrayTransparent = class(222, 222, 222, 120)
+      this.GrayTransparent = GrayTransparent
+      GrayText = class(110, 110, 110, 255)
+      this.GrayText = GrayText
+      DarkGrayTransparent = class(52, 52, 52, 200)
+      this.DarkGrayTransparent = DarkGrayTransparent
+      GrayDarker = class(170, 170, 170, 255)
+      this.GrayDarker = GrayDarker
+      GrayOverlay = class(35, 35, 35, 220)
+      this.GrayOverlay = GrayOverlay
       White = class(255, 255, 255, 255)
       this.White = White
+      WhiteOff = class(126, 126, 126, 255)
+      this.WhiteOff = WhiteOff
+      GreenTransparent = class(66, 170, 70, 220)
+      this.GreenTransparent = GreenTransparent
+      Hover = class(45, 45, 45, 255)
+      this.Hover = Hover
       Black = class(0, 0, 0, 255)
       this.Black = Black
-      Red = class(255, 0, 0, 255)
+      TextGray = class(77, 77, 77, 255)
+      this.TextGray = TextGray
+      Red = class(170, 66, 66, 255)
       this.Red = Red
-      Green = class(0, 255, 0, 255)
-      this.Green = Green
-      Blue = class(0, 0, 255, 255)
+      Blue = class(66, 104, 170, 255)
       this.Blue = Blue
+      Orange = class(170, 91, 66, 255)
+      this.Orange = Orange
+      BlueGradientStart = class(66, 104, 170, 255)
+      this.BlueGradientStart = BlueGradientStart
+      BlueGradientEnd = class(38, 60, 97, 255)
+      this.BlueGradientEnd = BlueGradientEnd
+      BlueLineGradientEnd = class(33, 52, 85, 255)
+      this.BlueLineGradientEnd = BlueLineGradientEnd
+      GreenGradientEnd = class(33, 85, 35, 255)
+      this.GreenGradientEnd = GreenGradientEnd
+      Bronze = class(168, 106, 65, 255)
+      this.Bronze = Bronze
+      Gold = class(210, 153, 38, 255)
+      this.Gold = Gold
+      Silver = class(222, 222, 222, 255)
+      this.Silver = Silver
     end
     __ctor__ = function (this, r, g, b, a)
       this.R = r
@@ -67,11 +118,35 @@ System.namespace("VoidSharp", function (namespace)
             { "ToString", 0x86, ToString, System.String }
           },
           fields = {
+            { "Background", 0xE, class },
+            { "BackgroundTransparent", 0xE, class },
             { "Black", 0xE, class },
             { "Blue", 0xE, class },
+            { "BlueGradientEnd", 0xE, class },
+            { "BlueGradientStart", 0xE, class },
+            { "BlueLineGradientEnd", 0xE, class },
+            { "Bronze", 0xE, class },
+            { "DarkGrayTransparent", 0xE, class },
+            { "Gold", 0xE, class },
+            { "Gray", 0xE, class },
+            { "GrayDarker", 0xE, class },
+            { "GrayOverlay", 0xE, class },
+            { "GrayText", 0xE, class },
+            { "GrayTransparent", 0xE, class },
             { "Green", 0xE, class },
+            { "GreenGradientEnd", 0xE, class },
+            { "GreenTransparent", 0xE, class },
+            { "Hover", 0xE, class },
+            { "InputDark", 0xE, class },
+            { "InputLight", 0xE, class },
+            { "LightGray", 0xE, class },
+            { "Orange", 0xE, class },
+            { "Primary", 0xE, class },
             { "Red", 0xE, class },
-            { "White", 0xE, class }
+            { "Silver", 0xE, class },
+            { "TextGray", 0xE, class },
+            { "White", 0xE, class },
+            { "WhiteOff", 0xE, class }
           },
           class = { 0x6 }
         }

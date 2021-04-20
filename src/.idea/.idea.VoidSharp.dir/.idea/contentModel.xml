@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.00" t="ExcludeRecursive" />
-    <e p="C:\Users\m0uka\AppData\Roaming\JetBrains\Rider2020.2\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\m0uka\AppData\Roaming\JetBrains\Rider2020.3\consoles\db" t="IncludeRecursive" />
     <e p="F:\gmod\garrysmod\addons\voidcsharp\src" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />
       <e p="compile.bat" t="Include" />
@@ -35,17 +35,20 @@
         <e p="VGUI.cs" t="Include" />
         <e p="VoidLib.cs" t="Include" />
         <e p="VoidUI" t="Include">
-          <e p="BackgroundPanel.cs" t="Include" />
-          <e p="Button.cs" t="Include" />
-          <e p="ColorPicker.cs" t="Include" />
-          <e p="Dropdown.cs" t="Include" />
-          <e p="ElementGrid.cs" t="Include" />
-          <e p="Frame.cs" t="Include" />
-          <e p="Grid.cs" t="Include" />
-          <e p="Search.cs" t="Include" />
-          <e p="Sidebar.cs" t="Include" />
-          <e p="Tabs.cs" t="Include" />
-          <e p="TextInput.cs" t="Include" />
+          <e p="Icons.cs" t="Include" />
+          <e p="Panels" t="Include">
+            <e p="BackgroundPanel.cs" t="Include" />
+            <e p="Button.cs" t="Include" />
+            <e p="ColorPicker.cs" t="Include" />
+            <e p="Dropdown.cs" t="Include" />
+            <e p="ElementGrid.cs" t="Include" />
+            <e p="Frame.cs" t="Include" />
+            <e p="Grid.cs" t="Include" />
+            <e p="Search.cs" t="Include" />
+            <e p="Sidebar.cs" t="Include" />
+            <e p="Tabs.cs" t="Include" />
+            <e p="TextInput.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="Handlers" t="Include">
@@ -73,13 +76,7 @@
           <e p="UIntegerSerializer.cs" t="Include" />
         </e>
       </e>
-      <e p="obj" t="ExcludeRecursive">
-        <e p="Debug" t="Include">
-          <e p="netcoreapp3.1" t="Include">
-            <e p="VoidSharp.AssemblyInfo.cs" t="Include" />
-          </e>
-        </e>
-      </e>
+      <e p="obj" t="ExcludeRecursive" />
       <e p="ORM" t="Include">
         <e p="Attributes" t="Include">
           <e p="AutoIncrementAttribute.cs" t="Include" />

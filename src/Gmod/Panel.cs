@@ -6,7 +6,7 @@ namespace VoidSharp
     public class Panel
     {
         // ReSharper disable once InconsistentNaming
-        public dynamic VGUIPanel { get; }
+        public dynamic VGUIPanel { get; set; }
 
         /// <summary>
         /// The X panel of the position.
@@ -53,6 +53,13 @@ namespace VoidSharp
         }
 
 
+        public T Cast<T>() where T : Panel, new()
+        {
+            T t = new T {VGUIPanel = VGUIPanel};
+            return t;
+        }
+
+
         #region Parenting
         
         /// <summary>
@@ -74,6 +81,12 @@ namespace VoidSharp
         {
             VGUIPanel.Add(panel.VGUIPanel);
             return panel;
+        }
+
+        public T Add<T>() where T : Panel, new()
+        {
+            T t = new T {Parent = this};
+            return t;
         }
         
         #endregion
